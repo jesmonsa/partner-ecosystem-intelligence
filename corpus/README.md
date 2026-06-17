@@ -1,31 +1,32 @@
 # 🔒 /corpus — Datos reales de partners (Oracle Restricted)
 
-**ESTE DIRECTORIO NO SE PUBLICA EN GITHUB PAGES.**
+**ESTE DIRECTORIO ESTÁ VACÍO A PROPÓSITO. NO subir aquí datos confidenciales mientras el repositorio sea PÚBLICO.**
 
-Aquí vive el corpus que el **Partner Intelligence Engine** lee para recomendar partners. Contiene información confidencial de Oracle y de terceros:
+Este es el lugar reservado para el corpus que el **Partner Intelligence Engine** lee para recomendar partners. Mientras el repo sea público, el corpus real (Excel de ISVs, estudios estratégicos detallados) debe vivir **fuera** de este repositorio: en OneDrive/SharePoint interno o en un repo privado separado.
 
-- `Proposta_MPL_FY26.xlsx` — mapeo de ISVs gerenciados: PAM, niveles OPN (L1/L2/L3), Comp IDs, razón social.
-- `estudos/` — estudios estratégicos detallados por partner (Veritran, Engineering, Pipefy, ArquitecSOFT, WideLabs, …), siguiendo `docs/estudio-estrategico/PLANTILLA.md`.
+## Qué contiene el corpus (en su ubicación privada)
+
+- Mapeo de ISVs gerenciados: PAM, niveles OPN (L1/L2/L3), Comp IDs, razón social.
+- Estudios estratégicos detallados por partner, siguiendo `docs/estudio-estrategico/PLANTILLA.md`.
 
 ## Reglas de manejo
 
-1. **Confidencial — Oracle Restricted \\ Including External Recipients.** No compartir fuera de canales autorizados.
+1. **Confidencial — Oracle Restricted \ Including External Recipients.** No publicar en repos públicos.
 2. **Sin datos personales sensibles.** Solo datos corporativos necesarios para el matchmaking.
-3. **Acceso por rol.** Repositorio privado; acceso por necesidad.
+3. **Acceso por rol.** El corpus real vive en ubicación privada; acceso por necesidad.
 4. **Validación previa.** El uso por agentes de IA pasa revisión de compliance y legal antes del piloto.
-5. **No publicar.** Si el plan no permite Pages privado, este directorio se excluye del deploy.
 
-## Formato que consume la IA
+## Formato que consume la IA *(ejemplo ficticio)*
 
-Registro mínimo por partner:
+Registro mínimo por partner (datos de ejemplo, no reales):
 
-| Campo | Ejemplo |
-|-------|---------|
-| Partner | Brasoftware |
-| Comp ID | 4-853715250632 |
-| Nivel OPN | Potential L2 |
-| PAM | Grazielle Forne |
+| Campo | Ejemplo (ficticio) |
+|-------|--------------------|
+| Partner | Partner Ejemplo S.A. |
+| Comp ID | X-000000000000 |
+| Nivel OPN | L2 |
+| PAM | (responsable asignado) |
 | Expertise / track | Tech (DB, OCI) |
 | Certificaciones | OCI Foundations, Associate |
 
-> El correo de Diogo Shibata confirma que el archivo **puede ser una lista simple**, ya que será interpretado por la IA.
+> El requerimiento confirma que el archivo **puede ser una lista simple**, ya que será interpretado por la IA.
