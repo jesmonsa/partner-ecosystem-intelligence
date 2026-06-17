@@ -83,6 +83,7 @@
   .badge{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.6px;color:var(--grn);
     border:1px solid #1c3a2c;background:#0c1f17;border-radius:6px;padding:3px 8px;margin-top:12px;text-transform:uppercase}
   .badge.soon{color:var(--amb);border-color:#3a2f12;background:#1c160a}
+  .seg .ic{font-size:22px}
   .flow{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;align-items:stretch}
   @media(max-width:760px){.flow{grid-template-columns:1fr}}
   .step{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px;position:relative}
@@ -91,6 +92,7 @@
   .step p{font-size:13px;color:var(--mut)}
   .note{margin-top:18px;background:#0c1f17;border:1px solid #1c3a2c;border-radius:12px;padding:14px 18px;font-size:13.5px;color:#bfe9d4}
   .note.warn{background:#1c160a;border-color:#3a2f12;color:#f0d9a8}
+  .note.elg{background:#11102a;border-color:#2c2a55;color:#cfcaf5}
   .mtools{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
   @media(max-width:760px){.mtools{grid-template-columns:1fr}}
   .mt{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px}
@@ -102,7 +104,7 @@
   .mo .h{font-weight:800;font-size:16px;margin-bottom:4px}
   .mo .t{font-size:12px;color:var(--red2);font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:12px}
   .mo li{font-size:13.5px;color:var(--mut);list-style:none;padding:6px 0 6px 20px;position:relative}
-  .mo li:before{content:"→";position:absolute;left:0;color:var(--mut2)}
+  .mo li:before{content:"\2192";position:absolute;left:0;color:var(--mut2)}
   .band{background:linear-gradient(120deg,#1a0f0d,#0e1626);border:1px solid var(--line);border-radius:20px;padding:34px}
   .band ol{margin:16px 0 0;padding-left:20px}
   .band li{margin:8px 0;color:var(--mut)}
@@ -120,6 +122,7 @@
       <div class="brand"><span class="dot"></span><div>Partner &amp; Ecosystem Intelligence<small data-i18n="brandSub">AI Challenge FY27 · LATAM · Challenge #4</small></div></div>
       <div class="nav-links">
         <a href="#framework" data-i18n="navFw">Framework</a>
+        <a href="#segment" data-i18n="navSeg">ELG</a>
         <a href="#components" data-i18n="navComp">Plataforma</a>
         <a href="#engine" data-i18n="navEng">Motor</a>
         <a href="#roadmap" data-i18n="navRoad">Roadmap</a>
@@ -178,6 +181,14 @@
     <div class="note" data-i18n="fwBase">Base común: repositorio único (Seismic / GitHub) · Gobierno y KPIs · Datos compartidos del ecosistema</div>
   </section>
 
+  <section id="segment">
+    <div class="eyebrow" data-i18n="segEye">Segmentación · Ecosystem-Led Growth (ELG)</div>
+    <h2 data-i18n="segTitle">No todos los partners cumplen el mismo rol — los activamos diferente</h2>
+    <p class="sub" data-i18n="segSub">Adaptado del modelo ELG de CAMCAR: segmentar por rol en el ecosistema afina el matchmaking — el motor recomienda el tipo de partner correcto según el deal, y cada tipo se mide con sus propios KPIs.</p>
+    <div class="comp" id="seg-grid"></div>
+    <div class="note elg" data-i18n="elgNote">ELG flywheel: Partners → Inteligencia → Co-sell → Consumo OCI → Crecimiento → Expansión. El channel manager opera como arquitecto de revenue, no como gestor de relaciones.</div>
+  </section>
+
   <section id="components">
     <div class="eyebrow" data-i18n="compEye">La plataforma viva</div>
     <h2 data-i18n="compTitle">Seis componentes que ya operamos</h2>
@@ -189,6 +200,7 @@
     <div class="eyebrow" data-i18n="engEye">El MVP — Partner Intelligence Engine</div>
     <h2 data-i18n="engTitle">De señales dispersas a una recomendación accionable</h2>
     <p class="sub" data-i18n="engSub">El corazón del challenge: la IA lee el corpus de estudios estratégicos, certificaciones y señales, y dado el proyecto informado por el equipo, recomienda qué partner activar. El humano siempre aprueba.</p>
+    <p style="margin:-14px 0 26px;color:var(--amb);font-weight:600;font-size:15px" data-i18n="engTag">Match the right partner · with the right capability · in the right deal · at the right moment.</p>
     <div class="flow" id="flow"></div>
     <div class="note" data-i18n="engEx">Ejemplo: un partner consume material de migración de bases de datos (señal) → su score sube → el motor lo recomienda para una cuenta con BANT calificado → el AE lo activa con un Oracle Day.</div>
     <div class="note warn" data-i18n="engGov">Gobernanza de datos: solo fuentes aprobadas (corpus interno, CRM, fuentes públicas), acceso por rol, sin datos personales sensibles, con revisión de compliance y legal antes del piloto.</div>
@@ -221,9 +233,9 @@
 
 <footer>
   <div class="wrap">
-    <div class="conf" data-i18n="confNote">⚠ Confidencial — Oracle Restricted. El corpus de partners con datos reales (Excel, estudios detallados) reside en el repositorio privado en /corpus y no se publica en este sitio. Validar el manejo de datos con la política interna antes de cualquier piloto.</div>
+    <div class="conf" data-i18n="confNote">⚠ Confidencial — Oracle Restricted. El corpus de partners con datos reales se mantiene fuera de este repositorio público (ubicación privada: OneDrive/SharePoint o repo privado). Validar el manejo de datos con la política interna antes de cualquier piloto.</div>
     <div data-i18n="footMade">Plataforma viva · Challenge #4 · Partner &amp; Ecosystem Intelligence · AI Challenge FY27 LATAM · Junio 2026</div>
-    <div class="team">Equipo: Leonardo Mello · Elielton Geraldi · Cristian Osorio · Renata Zanuto · Diogo Shibata · Thiago R. Lima · Diogo Hata · Sebastián Varela · Jesús Montoya · Mario Costa · Rodrigo Reis &nbsp;|&nbsp; Coaches: Song &amp; Marcelle</div>
+    <div class="team">Equipo Challenge #4 (BR) · alineado con el modelo ELG de CAMCAR · Coaches: Song &amp; Marcelle</div>
   </div>
 </footer>
 
@@ -251,43 +263,19 @@ const PILLARS = [
     tags:["Startups","VADs","Hubs","Radar"]}
 ];
 
-const COMPONENTS = [
-  {ic:"🏗️",meta:["Componente 1","Component 1","Componente 1"],
-    t:["Repositorio de arquitecturas + one-click deploy","Architecture repository + one-click deploy","Repositório de arquiteturas + one-click deploy"],
-    d:["46+ arquitecturas de referencia documentadas en español, con diagrama y código Terraform, desplegables en un clic vía OCI Resource Manager. Cubre arquitecturas progresivas, OKE, serverless, datos, DevOps e IA. Un partner pasa de la conversación a un ambiente desplegado el mismo día.",
-       "46+ reference architectures documented, with diagram and Terraform code, deployable in one click via OCI Resource Manager. Covers progressive architectures, OKE, serverless, data, DevOps and AI. A partner goes from conversation to a deployed environment the same day.",
-       "46+ arquiteturas de referência documentadas, com diagrama e código Terraform, implantáveis em um clique via OCI Resource Manager. Cobre arquiteturas progressivas, OKE, serverless, dados, DevOps e IA. Um parceiro vai da conversa a um ambiente implantado no mesmo dia."],
-    link:"https://github.com/jesmonsa/oracle-cloud-latam",linkT:["Abrir repositorio ↗","Open repository ↗","Abrir repositório ↗"],status:"live"},
-  {ic:"💬",meta:["Componente 2","Component 2","Componente 2"],
-    t:["Biblioteca de Prompts","Prompt library","Biblioteca de Prompts"],
-    d:["Prompts versionados y curados por caso de uso: generar radiografías de cuentas, redactar BOMs, comparar nubes, preparar Oracle Days, traducir mensajes entre idiomas y audiencias. Estandarizan la calidad y aceleran el día a día del equipo y de los partners.",
-       "Versioned, curated prompts by use case: generate account profiles, draft BOMs, compare clouds, prepare Oracle Days, translate messages across languages and audiences. They standardize quality and speed up daily work for the team and partners.",
-       "Prompts versionados e curados por caso de uso: gerar radiografias de contas, redigir BOMs, comparar nuvens, preparar Oracle Days, traduzir mensagens entre idiomas e públicos. Padronizam a qualidade e aceleram o dia a dia do time e dos parceiros."],
-    link:"https://github.com/jesmonsa/partner-ecosystem-intelligence/blob/main/docs/prompts/PROMPTS.md",linkT:["Ver prompts ↗","View prompts ↗","Ver prompts ↗"],status:"live"},
-  {ic:"🧠",meta:["Componente 3","Component 3","Componente 3"],
-    t:["Skills — expertos por dominio","Skills — domain experts","Skills — especialistas por domínio"],
-    d:["Rutas para formar especialistas profundos (DB, IA, seguridad, Kubernetes) que actúan como multiplicadores dentro de cada partner. Empaquetadas como skills reutilizables que la IA y los equipos consumen bajo demanda.",
-       "Paths to build deep specialists (DB, AI, security, Kubernetes) that act as multipliers within each partner. Packaged as reusable skills consumed on demand by AI and teams.",
-       "Trilhas para formar especialistas profundos (DB, IA, segurança, Kubernetes) que atuam como multiplicadores dentro de cada parceiro. Empacotadas como skills reutilizáveis consumidas sob demanda por IA e times."],
-    link:"https://github.com/jesmonsa/partner-ecosystem-intelligence/blob/main/docs/skills/SKILLS.md",linkT:["Ver skills ↗","View skills ↗","Ver skills ↗"],status:"live"},
-  {ic:"📑",meta:["Componente 4","Component 4","Componente 4"],
-    t:["Estudio estratégico corporativo","Corporate strategic study","Estudo estratégico corporativo"],
-    d:["El corpus que la IA lee para recomendar partners. Cada estudio sigue una plantilla común: resumen ejecutivo, visión corporativa, modelo de negocio y go-to-market, portafolio y núcleo tecnológico, mercados y casos, finanzas/competencia/compliance/riesgos, y oportunidades/recomendaciones. Ejemplos: Veritran, Engineering, Pipefy, ArquitecSOFT, WideLabs.",
-       "The corpus the AI reads to recommend partners. Each study follows a common template: executive summary, corporate overview, business model and go-to-market, portfolio and tech core, markets and cases, finance/competition/compliance/risks, and opportunities/recommendations. Examples: Veritran, Engineering, Pipefy, ArquitecSOFT, WideLabs.",
-       "O corpus que a IA lê para recomendar parceiros. Cada estudo segue um template comum: resumo executivo, visão corporativa, modelo de negócio e go-to-market, portfólio e núcleo tecnológico, mercados e casos, financeiro/concorrência/compliance/riscos, e oportunidades/recomendações. Exemplos: Veritran, Engineering, Pipefy, ArquitecSOFT, WideLabs."],
-    link:"https://github.com/jesmonsa/partner-ecosystem-intelligence/blob/main/docs/estudio-estrategico/PLANTILLA.md",linkT:["Ver plantilla ↗","View template ↗","Ver template ↗"],status:"live"},
-  {ic:"🤖",meta:["Componente 5","Component 5","Componente 5"],
-    t:["AI Harness — agentes sobre OCI","AI Harness — agents over OCI","AI Harness — agentes sobre OCI"],
-    d:["Patrón de agentes de IA conectados vía CLI/SDK a Oracle Cloud: despliegues asistidos (Terraform desde lenguaje natural), troubleshooting guiado (logs, métricas, remediación) y operación/consultas en lenguaje natural. Portable a Oracle AI; lo importante es el patrón, no la marca.",
-       "Pattern of AI agents connected via CLI/SDK to Oracle Cloud: assisted deployments (Terraform from natural language), guided troubleshooting (logs, metrics, remediation) and natural-language operations/queries. Portable to Oracle AI; the pattern matters, not the brand.",
-       "Padrão de agentes de IA conectados via CLI/SDK ao Oracle Cloud: implantações assistidas (Terraform em linguagem natural), troubleshooting guiado (logs, métricas, remediação) e operação/consultas em linguagem natural. Portável para Oracle AI; o que importa é o padrão, não a marca."],
-    link:"#engine",linkT:["Ver el motor","See the engine","Ver o motor"],status:"soon"},
-  {ic:"🚚",meta:["Componente 6","Component 6","Componente 6"],
-    t:["Herramientas de migración y análisis","Migration & analysis tools","Ferramentas de migração e análise"],
-    d:["Toolkit OCI (OCM, ZDM, DMS, GoldenGate) más herramientas de ecosistema (Matilda, RackWare RMM, VMware HCX sobre OCVS) para descubrimiento, assessment, replicación y cutover. Empaquetado con metodología de 3 fases y los 7 Rs.",
-       "OCI toolkit (OCM, ZDM, DMS, GoldenGate) plus ecosystem tools (Matilda, RackWare RMM, VMware HCX on OCVS) for discovery, assessment, replication and cutover. Packaged with a 3-phase methodology and the 7 Rs.",
-       "Toolkit OCI (OCM, ZDM, DMS, GoldenGate) mais ferramentas de ecossistema (Matilda, RackWare RMM, VMware HCX sobre OCVS) para descoberta, assessment, replicação e cutover. Empacotado com metodologia de 3 fases e os 7 Rs."],
-    link:"#migration",linkT:["Ver toolkit","See toolkit","Ver toolkit"],status:"live"}
+const SEG = [
+  {ic:"🛠️",w:["Construyen sobre OCI","Build on OCI","Constroem sobre OCI"],t:["Build Partners","Build Partners","Build Partners"],
+    who:["ISVs · Startups · SaaS/IA · Tech","ISVs · Startups · SaaS/AI · Tech","ISVs · Startups · SaaS/IA · Tech"],
+    kpi:["Apps en OCI · Consumo OCI · Marketplace · Workloads/GPUs","Apps on OCI · OCI consumption · Marketplace · Workloads/GPUs","Apps em OCI · Consumo OCI · Marketplace · Workloads/GPUs"]},
+  {ic:"🤝",w:["Venden Oracle","Sell Oracle","Vendem Oracle"],t:["Sell Partners","Sell Partners","Sell Partners"],
+    who:["VARs · Integradores · Consultoras · Resellers","VARs · Integrators · Consultancies · Resellers","VARs · Integradores · Consultorias · Resellers"],
+    kpi:["Pipeline sourced · Revenue cerrado · Co-sell deals · Certificaciones","Pipeline sourced · Revenue closed · Co-sell deals · Certifications","Pipeline sourced · Revenue fechado · Co-sell deals · Certificações"]},
+  {ic:"⚙️",w:["Implementan y migran","Implement & migrate","Implementam e migram"],t:["Service Partners","Service Partners","Service Partners"],
+    who:["Consultoras · Integradores · MSPs","Consultancies · Integrators · MSPs","Consultorias · Integradores · MSPs"],
+    kpi:["Migraciones · Go-live success · Adopción · Expansión","Migrations · Go-live success · Adoption · Expansion","Migrações · Go-live success · Adoção · Expansão"]},
+  {ic:"🔑",w:["Abren puertas y generan demanda","Open doors & generate demand","Abrem portas e geram demanda"],t:["Influence Partners","Influence Partners","Influence Partners"],
+    who:["VCs · Aceleradoras · Comunidades · Hubs","VCs · Accelerators · Communities · Hubs","VCs · Aceleradoras · Comunidades · Hubs"],
+    kpi:["Introducciones · Startups onboarded · Exec access · Nuevos logos","Introductions · Startups onboarded · Exec access · New logos","Introduções · Startups onboarded · Exec access · Novos logos"]}
 ];
 
 const FLOW = [
@@ -333,7 +321,7 @@ const ASK = [
 
 const I = {
   brandSub:["AI Challenge FY27 · LATAM · Challenge #4","AI Challenge FY27 · LATAM · Challenge #4","AI Challenge FY27 · LATAM · Challenge #4"],
-  navFw:["Framework","Framework","Framework"],navComp:["Plataforma","Platform","Plataforma"],
+  navFw:["Framework","Framework","Framework"],navComp:["Plataforma","Platform","Plataforma"],navSeg:["ELG","ELG","ELG"],
   navEng:["Motor","Engine","Motor"],navRoad:["Roadmap","Roadmap","Roadmap"],
   heroKick:["● AI Challenge FY27 · LATAM","● AI Challenge FY27 · LATAM","● AI Challenge FY27 · LATAM"],
   heroTitle:["De un ecosistema fragmentado a un <span class='g'>motor regional de crecimiento inteligente</span>",
@@ -371,6 +359,14 @@ const I = {
   fwBase:["Base común: repositorio único (Seismic / GitHub) · Gobierno y KPIs · Datos compartidos del ecosistema",
     "Common foundation: single repository (Seismic / GitHub) · Governance and KPIs · Shared ecosystem data",
     "Base comum: repositório único (Seismic / GitHub) · Governança e KPIs · Dados compartilhados do ecossistema"],
+  segEye:["Segmentación · Ecosystem-Led Growth (ELG)","Segmentation · Ecosystem-Led Growth (ELG)","Segmentação · Ecosystem-Led Growth (ELG)"],
+  segTitle:["No todos los partners cumplen el mismo rol — los activamos diferente","Not all partners play the same role — we activate them differently","Nem todos os parceiros têm o mesmo papel — nós os ativamos de forma diferente"],
+  segSub:["Adaptado del modelo ELG de CAMCAR: segmentar por rol en el ecosistema afina el matchmaking — el motor recomienda el tipo de partner correcto según el deal, y cada tipo se mide con sus propios KPIs.",
+    "Adapted from CAMCAR's ELG model: segmenting by ecosystem role sharpens matchmaking — the engine recommends the right partner type per deal, and each type is measured with its own KPIs.",
+    "Adaptado do modelo ELG da CAMCAR: segmentar por papel no ecossistema refina o matchmaking — o motor recomenda o tipo de parceiro certo por deal, e cada tipo é medido com seus próprios KPIs."],
+  elgNote:["ELG flywheel: Partners → Inteligencia → Co-sell → Consumo OCI → Crecimiento → Expansión. El channel manager opera como arquitecto de revenue, no como gestor de relaciones.",
+    "ELG flywheel: Partners → Intelligence → Co-sell → OCI consumption → Growth → Expansion. The channel manager operates as a revenue architect, not a relationship manager.",
+    "ELG flywheel: Partners → Inteligência → Co-sell → Consumo OCI → Crescimento → Expansão. O channel manager opera como arquiteto de revenue, não como gestor de relações."],
   compEye:["La plataforma viva","The living platform","A plataforma viva"],
   compTitle:["Seis componentes que ya operamos","Six components we already operate","Seis componentes que já operamos"],
   compSub:["Cada componente es un activo concreto, no una idea. Lo verde ya existe hoy; lo ámbar es piloto acotado dentro del plan de 90 días.",
@@ -381,6 +377,7 @@ const I = {
   engSub:["El corazón del challenge: la IA lee el corpus de estudios estratégicos, certificaciones y señales, y dado el proyecto informado por el equipo, recomienda qué partner activar. El humano siempre aprueba.",
     "The heart of the challenge: the AI reads the corpus of strategic studies, certifications and signals, and given the project reported by the team, recommends which partner to activate. The human always approves.",
     "O coração do challenge: a IA lê o corpus de estudos estratégicos, certificações e sinais, e dado o projeto informado pelo time, recomenda qual parceiro ativar. O humano sempre aprova."],
+  engTag:["Match the right partner · with the right capability · in the right deal · at the right moment.","Match the right partner · with the right capability · in the right deal · at the right moment.","Match the right partner · with the right capability · in the right deal · at the right moment."],
   engEx:["Ejemplo: un partner consume material de migración de bases de datos (señal) → su score sube → el motor lo recomienda para una cuenta con BANT calificado → el AE lo activa con un Oracle Day.",
     "Example: a partner heavily consumes database migration material (signal) → its score rises → the engine recommends it for a BANT-qualified account → the AE activates it with an Oracle Day.",
     "Exemplo: um parceiro consome intensamente material de migração de bancos (sinal) → seu score sobe → o motor o recomenda para uma conta com BANT qualificado → o AE o ativa com um Oracle Day."],
@@ -405,13 +402,52 @@ const I = {
   askClose:["La decisión que pedimos: escalar lo que ya demostró funcionar — con inteligencia, gobierno y velocidad.",
     "The decision we ask for: scale what has already proven to work — with intelligence, governance and speed.",
     "A decisão que pedimos: escalar o que já provou funcionar — com inteligência, governança e velocidade."],
-  confNote:["⚠ Confidencial — Oracle Restricted. El corpus de partners con datos reales (Excel, estudios detallados) reside en el repositorio privado en /corpus y no se publica en este sitio. Validar el manejo de datos con la política interna antes de cualquier piloto.",
-    "⚠ Confidential — Oracle Restricted. The partner corpus with real data (Excel, detailed studies) lives in the private repository under /corpus and is not published on this site. Validate data handling with internal policy before any pilot.",
-    "⚠ Confidencial — Oracle Restricted. O corpus de parceiros com dados reais (Excel, estudos detalhados) reside no repositório privado em /corpus e não é publicado neste site. Validar o tratamento de dados com a política interna antes de qualquer piloto."],
+  confNote:["⚠ Confidencial — Oracle Restricted. El corpus de partners con datos reales se mantiene fuera de este repositorio público (ubicación privada: OneDrive/SharePoint o repo privado). Validar el manejo de datos con la política interna antes de cualquier piloto.",
+    "⚠ Confidential — Oracle Restricted. The partner corpus with real data is kept outside this public repository (private location: OneDrive/SharePoint or a private repo). Validate data handling with internal policy before any pilot.",
+    "⚠ Confidencial — Oracle Restricted. O corpus de parceiros com dados reais é mantido fora deste repositório público (local privado: OneDrive/SharePoint ou repo privado). Validar o tratamento de dados com a política interna antes de qualquer piloto."],
   footMade:["Plataforma viva · Challenge #4 · Partner & Ecosystem Intelligence · AI Challenge FY27 LATAM · Junio 2026",
     "Living platform · Challenge #4 · Partner & Ecosystem Intelligence · AI Challenge FY27 LATAM · June 2026",
     "Plataforma viva · Challenge #4 · Partner & Ecosystem Intelligence · AI Challenge FY27 LATAM · Junho 2026"]
 };
+
+const COMPONENTS = [
+  {ic:"🏗️",meta:["Componente 1","Component 1","Componente 1"],
+    t:["Repositorio de arquitecturas + one-click deploy","Architecture repository + one-click deploy","Repositório de arquiteturas + one-click deploy"],
+    d:["46+ arquitecturas de referencia documentadas en español, con diagrama y código Terraform, desplegables en un clic vía OCI Resource Manager. Cubre arquitecturas progresivas, OKE, serverless, datos, DevOps e IA. Un partner pasa de la conversación a un ambiente desplegado el mismo día.",
+       "46+ reference architectures documented, with diagram and Terraform code, deployable in one click via OCI Resource Manager. Covers progressive architectures, OKE, serverless, data, DevOps and AI. A partner goes from conversation to a deployed environment the same day.",
+       "46+ arquiteturas de referência documentadas, com diagrama e código Terraform, implantáveis em um clique via OCI Resource Manager. Cobre arquiteturas progressivas, OKE, serverless, dados, DevOps e IA. Um parceiro vai da conversa a um ambiente implantado no mesmo dia."],
+    link:"https://github.com/jesmonsa/oracle-cloud-latam",linkT:["Abrir repositorio ↗","Open repository ↗","Abrir repositório ↗"],status:"live"},
+  {ic:"💬",meta:["Componente 2","Component 2","Componente 2"],
+    t:["Biblioteca de Prompts","Prompt library","Biblioteca de Prompts"],
+    d:["Prompts versionados y curados por caso de uso: generar radiografías de cuentas, redactar BOMs, comparar nubes, preparar Oracle Days, traducir mensajes entre idiomas y audiencias. Estandarizan la calidad y aceleran el día a día del equipo y de los partners.",
+       "Versioned, curated prompts by use case: generate account profiles, draft BOMs, compare clouds, prepare Oracle Days, translate messages across languages and audiences. They standardize quality and speed up daily work for the team and partners.",
+       "Prompts versionados e curados por caso de uso: gerar radiografias de contas, redigir BOMs, comparar nuvens, preparar Oracle Days, traduzir mensagens entre idiomas e públicos. Padronizam a qualidade e aceleram o dia a dia do time e dos parceiros."],
+    link:"https://github.com/jesmonsa/partner-ecosystem-intelligence/blob/main/docs/prompts/PROMPTS.md",linkT:["Ver prompts ↗","View prompts ↗","Ver prompts ↗"],status:"live"},
+  {ic:"🧠",meta:["Componente 3","Component 3","Componente 3"],
+    t:["Skills — expertos por dominio","Skills — domain experts","Skills — especialistas por domínio"],
+    d:["Rutas para formar especialistas profundos (DB, IA, seguridad, Kubernetes) que actúan como multiplicadores dentro de cada partner. Empaquetadas como skills reutilizables que la IA y los equipos consumen bajo demanda.",
+       "Paths to build deep specialists (DB, AI, security, Kubernetes) that act as multipliers within each partner. Packaged as reusable skills consumed on demand by AI and teams.",
+       "Trilhas para formar especialistas profundos (DB, IA, segurança, Kubernetes) que atuam como multiplicadores dentro de cada parceiro. Empacotadas como skills reutilizáveis consumidas sob demanda por IA e times."],
+    link:"https://github.com/jesmonsa/partner-ecosystem-intelligence/blob/main/docs/skills/SKILLS.md",linkT:["Ver skills ↗","View skills ↗","Ver skills ↗"],status:"live"},
+  {ic:"📑",meta:["Componente 4","Component 4","Componente 4"],
+    t:["Estudio estratégico corporativo","Corporate strategic study","Estudo estratégico corporativo"],
+    d:["El corpus que la IA lee para recomendar partners. Cada estudio sigue una plantilla común e incluye la segmentación ELG (Build/Sell/Service/Influence) y el capability mapping. Ejemplos de estructura: resumen ejecutivo, modelo de negocio, portafolio, mercados, finanzas/riesgos y recomendaciones.",
+       "The corpus the AI reads to recommend partners. Each study follows a common template and includes ELG segmentation (Build/Sell/Service/Influence) and capability mapping. Structure: executive summary, business model, portfolio, markets, finance/risks and recommendations.",
+       "O corpus que a IA lê para recomendar parceiros. Cada estudo segue um template comum e inclui a segmentação ELG (Build/Sell/Service/Influence) e o capability mapping. Estrutura: resumo executivo, modelo de negócio, portfólio, mercados, financeiro/riscos e recomendações."],
+    link:"https://github.com/jesmonsa/partner-ecosystem-intelligence/blob/main/docs/estudio-estrategico/PLANTILLA.md",linkT:["Ver plantilla ↗","View template ↗","Ver template ↗"],status:"live"},
+  {ic:"🤖",meta:["Componente 5","Component 5","Componente 5"],
+    t:["AI Harness — agentes sobre OCI","AI Harness — agents over OCI","AI Harness — agentes sobre OCI"],
+    d:["Patrón de agentes de IA conectados vía CLI/SDK a Oracle Cloud: despliegues asistidos (Terraform desde lenguaje natural), troubleshooting guiado (logs, métricas, remediación) y operación/consultas en lenguaje natural. Portable a Oracle AI; lo importante es el patrón, no la marca.",
+       "Pattern of AI agents connected via CLI/SDK to Oracle Cloud: assisted deployments (Terraform from natural language), guided troubleshooting (logs, metrics, remediation) and natural-language operations/queries. Portable to Oracle AI; the pattern matters, not the brand.",
+       "Padrão de agentes de IA conectados via CLI/SDK ao Oracle Cloud: implantações assistidas (Terraform em linguagem natural), troubleshooting guiado (logs, métricas, remediação) e operação/consultas em linguagem natural. Portável para Oracle AI; o que importa é o padrão, não a marca."],
+    link:"#engine",linkT:["Ver el motor","See the engine","Ver o motor"],status:"soon"},
+  {ic:"🚚",meta:["Componente 6","Component 6","Componente 6"],
+    t:["Herramientas de migración y análisis","Migration & analysis tools","Ferramentas de migração e análise"],
+    d:["Toolkit OCI (OCM, ZDM, DMS, GoldenGate) más herramientas de ecosistema (Matilda, RackWare RMM, VMware HCX sobre OCVS) para descubrimiento, assessment, replicación y cutover. Empaquetado con metodología de 3 fases y los 7 Rs.",
+       "OCI toolkit (OCM, ZDM, DMS, GoldenGate) plus ecosystem tools (Matilda, RackWare RMM, VMware HCX on OCVS) for discovery, assessment, replication and cutover. Packaged with a 3-phase methodology and the 7 Rs.",
+       "Toolkit OCI (OCM, ZDM, DMS, GoldenGate) mais ferramentas de ecossistema (Matilda, RackWare RMM, VMware HCX sobre OCVS) para descoberta, assessment, replicação e cutover. Empacotado com metodologia de 3 fases e os 7 Rs."],
+    link:"#migration",linkT:["Ver toolkit","See toolkit","Ver toolkit"],status:"live"}
+];
 
 let li = 0;
 function render(){
@@ -421,6 +457,12 @@ function render(){
     <div class="pill ${p.c}"><div class="num">${p.n}</div>
       <h3>${p.t[li]}</h3><p>${p.d[li]}</p>
       <div class="tags">${p.tags.map(t=>`<span class="tag">${t}</span>`).join("")}</div></div>`).join("");
+  document.getElementById("seg-grid").innerHTML = SEG.map(s=>`
+    <div class="card seg"><div class="ic">${s.ic}</div>
+      <div class="meta">${s.w[li]}</div><h3>${s.t[li]}</h3>
+      <p>${s.who[li]}</p>
+      <div class="meta" style="margin-top:14px;color:var(--blu)">KPIs</div>
+      <p>${s.kpi[li]}</p></div>`).join("");
   document.getElementById("components-grid").innerHTML = COMPONENTS.map(c=>`
     <div class="card"><div class="ic">${c.ic}</div>
       <div class="meta">${c.meta[li]}</div><h3>${c.t[li]}</h3><p>${c.d[li]}</p>
