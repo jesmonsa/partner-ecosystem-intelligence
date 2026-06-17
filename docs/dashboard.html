@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KPIs Semanales — Gestión de Canal · Partner & Ecosystem Intelligence</title>
+<style>
+  :root{
+    --bg:#05080f;--panel:#0e1626;--panel2:#121d31;--line:#1d2942;--txt:#e7edf6;--mut:#9fb0c7;--mut2:#6f819b;
+    --red:#C74634;--red2:#ff6f5e;--grn:#3ddc97;--blu:#5aa9ff;--amb:#f5b942;--vio:#9b8cff;--rad:14px;--maxw:1180px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:radial-gradient(1100px 500px at 85% -10%,#10203a 0,transparent 60%),var(--bg);
+    color:var(--txt);font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+  header{position:sticky;top:0;z-index:30;background:rgba(5,8,15,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  nav{display:flex;align-items:center;gap:14px;height:60px}
+  .brand{font-weight:700;display:flex;align-items:center;gap:9px}
+  .brand .dot{width:10px;height:10px;border-radius:3px;background:var(--red)}
+  .back{font-size:13px;color:var(--mut);margin-left:auto}
+  .back:hover{color:var(--txt)}
+  .lang{display:flex;gap:4px;border:1px solid var(--line);border-radius:999px;padding:3px}
+  .lang button{background:transparent;border:0;color:var(--mut);font-size:12px;font-weight:600;padding:5px 10px;border-radius:999px;cursor:pointer}
+  .lang button.on{background:var(--red);color:#fff}
+  .sample{background:#1c160a;border:1px solid #3a2f12;color:#f0d9a8;border-radius:10px;padding:9px 14px;font-size:12.5px;margin:18px 0}
+  .top{display:flex;flex-wrap:wrap;align-items:flex-end;gap:14px;margin:26px 0 6px}
+  h1{font-size:clamp(22px,3vw,30px);font-weight:800;letter-spacing:-.4px}
+  .wk{margin-left:auto;text-align:right;color:var(--mut);font-size:13px}
+  .wk b{color:var(--txt);font-size:15px}
+  .band{font-size:11px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;padding:7px 14px;border-radius:10px;margin:22px 0 10px;display:flex;align-items:center;gap:10px}
+  .band.c1{background:#0c1830;color:var(--blu);border:1px solid #1d3357}
+  .band.c2{background:#1c0f0d;color:var(--red2);border:1px solid #3a2420}
+  .band.c3{background:#160f2b;color:var(--vio);border:1px solid #2c2155}
+  .band.c4{background:#0c1f17;color:var(--grn);border:1px solid #1c3a2c}
+  .band.c5{background:#1c160a;color:var(--amb);border:1px solid #3a2f12}
+  .grid{display:grid;gap:12px}
+  .g4{grid-template-columns:repeat(4,1fr)} .g3{grid-template-columns:repeat(3,1fr)} .g6{grid-template-columns:repeat(6,1fr)}
+  @media(max-width:860px){.g4,.g6{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:1fr}}
+  .m{background:var(--panel);border:1px solid var(--line);border-radius:var(--rad);padding:16px}
+  .m .v{font-size:26px;font-weight:800}
+  .m .l{font-size:12px;color:var(--mut);margin-top:3px;line-height:1.3}
+  .m .d{font-size:12px;font-weight:700;margin-top:7px}
+  .up{color:var(--grn)} .down{color:var(--red2)} .flat{color:var(--mut2)}
+  .row{display:grid;grid-template-columns:2fr 1fr;gap:12px;margin-top:12px}
+  @media(max-width:860px){.row{grid-template-columns:1fr}}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--rad);padding:18px}
+  .card h3{font-size:14px;color:var(--mut);font-weight:700;text-transform:uppercase;letter-spacing:.6px;margin-bottom:14px}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line)}
+  th{color:var(--mut2);font-size:11px;text-transform:uppercase;letter-spacing:.5px}
+  .pill{font-size:11px;padding:2px 8px;border-radius:999px;border:1px solid var(--line);color:var(--mut)}
+  .gauge{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:100%}
+  .gnum{font-size:46px;font-weight:800;color:var(--grn)}
+  .footer{padding:30px 0;border-top:1px solid var(--line);color:var(--mut2);font-size:12.5px;margin-top:30px}
+  .ov{display:flex;flex-wrap:wrap;gap:18px;align-items:center;background:var(--panel2);border:1px solid var(--line);border-radius:var(--rad);padding:14px 18px;margin-top:6px}
+  .ov b{font-size:18px} .ov span{font-size:12px;color:var(--mut)}
+  .tag{font-size:11px;color:var(--mut);border:1px solid var(--line);border-radius:999px;padding:3px 9px}
+</style>
+</head>
+<body>
+<header><div class="wrap"><nav>
+  <div class="brand"><span class="dot"></span>Partner &amp; Ecosystem Intelligence</div>
+  <a class="back" href="./index.html" data-i18n="back">← Volver a la plataforma</a>
+  <div class="lang"><button data-lang="es" class="on">ES</button><button data-lang="en">EN</button><button data-lang="pt">PT</button></div>
+</nav></div></header>
+
+<div class="wrap">
+  <div class="sample" data-i18n="sample">⚠ Datos de ejemplo (sample) — prototipo. El dashboard se conecta a CRM / Seismic / repositorio del ecosistema cuando esté disponible. Ningún dato real de partners se publica aquí.</div>
+
+  <div class="top">
+    <div>
+      <h1 data-i18n="title">KPIs semanales — Gestión de canal</h1>
+      <div style="color:var(--mut);font-size:14px" data-i18n="subtitle">Modelo Ecosystem-Led Growth · enfoque: conectar con intención, ejecutar con disciplina, escalar el ecosistema</div>
+    </div>
+    <div class="wk"><span data-i18n="weekLbl">Semana</span> <b>21</b><br><span data-i18n="updated">Actualizado: 17 jun 2026</span></div>
+  </div>
+
+  <div class="ov">
+    <div><b>Partner Ejemplo (Tier 1)</b><br><span data-i18n="ovFocus">Focus: AI &amp; Data · Migración OCI · Modernización</span></div>
+    <div style="margin-left:auto" class="tag" data-i18n="ovTeam">POD: CSM · PAM · Presales Tech/Apps · Arq SaaS · PXM · Marketing</div>
+  </div>
+
+  <div class="band c1"><span>🔵</span><span data-i18n="b1">CONNECT — Generación de demanda</span></div>
+  <div class="grid g4" id="connect"></div>
+
+  <div class="band c2"><span>🔴</span><span data-i18n="b2">EXECUTE — Velocidad y conversión</span></div>
+  <div class="grid g6" id="execute"></div>
+
+  <div class="band c3"><span>🟣</span><span data-i18n="b3">CO-SELL — Ejecución conjunta</span></div>
+  <div class="grid g3" id="cosell"></div>
+
+  <div class="band c4"><span>🟢</span><span data-i18n="b4">OCI / IA — Impacto en consumo</span></div>
+  <div class="grid g4" id="consumo"></div>
+
+  <div class="band c5"><span>🟡</span><span data-i18n="b5">SCALE — Impacto y crecimiento</span></div>
+  <div class="grid g3" id="scale"></div>
+
+  <div class="row">
+    <div class="card"><h3 data-i18n="topOpp">Top 5 oportunidades activas</h3>
+      <table id="opptbl"><thead><tr>
+        <th data-i18n="thOpp">Oportunidad</th><th data-i18n="thStage">Stage</th><th data-i18n="thVal">Valor</th><th data-i18n="thClose">Cierre</th>
+      </tr></thead><tbody></tbody></table>
+    </div>
+    <div class="card"><h3 data-i18n="health">Health Score semanal</h3>
+      <div class="gauge"><div class="gnum">87<span style="font-size:20px;color:var(--mut2)">/100</span></div>
+        <div class="tag up" data-i18n="healthTrend">▲ +4 vs semana anterior</div>
+        <div style="font-size:12px;color:var(--mut);text-align:center;margin-top:8px" data-i18n="healthNote">SQLs · Stage progression · Velocity · Co-sell · CRM hygiene</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer wrap" style="padding-left:0;padding-right:0">
+    <div data-i18n="foot">Prototipo de dashboard · Partner &amp; Ecosystem Intelligence · adaptado del modelo de KPIs semanales de CAMCAR · datos de ejemplo</div>
+  </div>
+</div>
+
+<script>
+const L=["es","en","pt"];
+const CONNECT=[
+  {v:"24",d:"+14%",t:"up",l:["Nuevas conexiones","New connections","Novas conexões"]},
+  {v:"32",d:"+18%",t:"up",l:["Reuniones agendadas","Meetings booked","Reuniões agendadas"]},
+  {v:"11",d:"+10%",t:"up",l:["SQL generados","SQLs generated","SQLs gerados"]},
+  {v:"6",d:"+20%",t:"up",l:["Nuevas cuentas ICP","New ICP accounts","Novas contas ICP"]}
+];
+const EXECUTE=[
+  {v:"27",d:"+8%",t:"up",l:["Oportunidades activas","Active opportunities","Oportunidades ativas"]},
+  {v:"16%",d:"+4pp",t:"up",l:["Stage progression WoW","Stage progression WoW","Stage progression WoW"]},
+  {v:"78",d:"-6 días",t:"up",l:["Sales cycle (días)","Sales cycle (days)","Ciclo de vendas (dias)"]},
+  {v:"3",d:"-25%",t:"up",l:["Deals estancados","Stalled deals","Deals estagnados"]},
+  {v:"5",d:"+40%",t:"up",l:["Blockers removidos","Blockers removed","Blockers removidos"]},
+  {v:"21",d:"+10%",t:"up",l:["Deals en stage","Deals in stage","Deals em stage"]}
+];
+const COSELL=[
+  {v:"12",d:"+20%",t:"up",l:["Co-sell meetings","Co-sell meetings","Co-sell meetings"]},
+  {v:"21",d:"+10%",t:"up",l:["Deals con partner attached","Partner-attached deals","Deals com partner attached"]},
+  {v:"6",d:"+20%",t:"up",l:["Exec sponsor meetings","Exec sponsor meetings","Exec sponsor meetings"]}
+];
+const CONSUMO=[
+  {v:"4",d:"+25%",t:"up",l:["AI opportunities","AI opportunities","AI opportunities"]},
+  {v:"9",d:"+29%",t:"up",l:["OCI opportunities","OCI opportunities","OCI opportunities"]},
+  {v:"7",d:"+40%",t:"up",l:["Nuevos workloads","New workloads","Novos workloads"]},
+  {v:"$418K",d:"+15%",t:"up",l:["Consumo OCI","OCI consumption","Consumo OCI"]}
+];
+const SCALE=[
+  {v:"$1.2M",d:"+12%",t:"up",l:["Won contribution","Won contribution","Won contribution"]},
+  {v:"2",d:"+1",t:"up",l:["Casos de éxito","Success cases","Casos de sucesso"]},
+  {v:"3",d:"+1",t:"up",l:["Casos de uso","Use cases","Casos de uso"]}
+];
+const OPP=[
+  {o:"Banca Digital Financiera",s:"Stage 3",v:"$750K",c:"30-jun"},
+  {o:"Migración Core Banking",s:"Stage 4",v:"$620K",c:"15-ago"},
+  {o:"AI Data Platform Retail",s:"Stage 2",v:"$540K",c:"20-ago"},
+  {o:"Modernización Apps Seguros",s:"Stage 3",v:"$410K",c:"05-sep"},
+  {o:"Data Lake Gobierno",s:"Stage 2",v:"$480K",c:"05-sep"}
+];
+const T={
+  back:["← Volver a la plataforma","← Back to the platform","← Voltar à plataforma"],
+  sample:["⚠ Datos de ejemplo (sample) — prototipo. El dashboard se conecta a CRM / Seismic / repositorio del ecosistema cuando esté disponible. Ningún dato real de partners se publica aquí.",
+    "⚠ Sample data — prototype. The dashboard connects to CRM / Seismic / ecosystem repository when available. No real partner data is published here.",
+    "⚠ Dados de exemplo (sample) — protótipo. O dashboard conecta a CRM / Seismic / repositório do ecossistema quando disponível. Nenhum dado real de parceiros é publicado aqui."],
+  title:["KPIs semanales — Gestión de canal","Weekly KPIs — Channel management","KPIs semanais — Gestão de canal"],
+  subtitle:["Modelo Ecosystem-Led Growth · enfoque: conectar con intención, ejecutar con disciplina, escalar el ecosistema",
+    "Ecosystem-Led Growth model · focus: connect with intent, execute with discipline, scale the ecosystem",
+    "Modelo Ecosystem-Led Growth · foco: conectar com intenção, executar com disciplina, escalar o ecossistema"],
+  weekLbl:["Semana","Week","Semana"],
+  updated:["Actualizado: 17 jun 2026","Updated: Jun 17, 2026","Atualizado: 17 jun 2026"],
+  ovFocus:["Focus: AI & Data · Migración OCI · Modernización","Focus: AI & Data · OCI Migration · Modernization","Focus: AI & Data · Migração OCI · Modernização"],
+  ovTeam:["POD: CSM · PAM · Presales Tech/Apps · Arq SaaS · PXM · Marketing","POD: CSM · PAM · Presales Tech/Apps · Arq SaaS · PXM · Marketing","POD: CSM · PAM · Presales Tech/Apps · Arq SaaS · PXM · Marketing"],
+  b1:["CONNECT — Generación de demanda","CONNECT — Demand generation","CONNECT — Geração de demanda"],
+  b2:["EXECUTE — Velocidad y conversión","EXECUTE — Velocity & conversion","EXECUTE — Velocidade e conversão"],
+  b3:["CO-SELL — Ejecución conjunta","CO-SELL — Joint execution","CO-SELL — Execução conjunta"],
+  b4:["OCI / IA — Impacto en consumo","OCI / AI — Consumption impact","OCI / IA — Impacto no consumo"],
+  b5:["SCALE — Impacto y crecimiento","SCALE — Impact & growth","SCALE — Impacto e crescimento"],
+  topOpp:["Top 5 oportunidades activas","Top 5 active opportunities","Top 5 oportunidades ativas"],
+  thOpp:["Oportunidad","Opportunity","Oportunidade"],thStage:["Stage","Stage","Stage"],thVal:["Valor","Value","Valor"],thClose:["Cierre","Close","Fechamento"],
+  health:["Health Score semanal","Weekly Health Score","Health Score semanal"],
+  healthTrend:["▲ +4 vs semana anterior","▲ +4 vs last week","▲ +4 vs semana anterior"],
+  healthNote:["SQLs · Stage progression · Velocity · Co-sell · CRM hygiene","SQLs · Stage progression · Velocity · Co-sell · CRM hygiene","SQLs · Stage progression · Velocity · Co-sell · CRM hygiene"],
+  foot:["Prototipo de dashboard · Partner & Ecosystem Intelligence · adaptado del modelo de KPIs semanales de CAMCAR · datos de ejemplo",
+    "Dashboard prototype · Partner & Ecosystem Intelligence · adapted from CAMCAR's weekly KPI model · sample data",
+    "Protótipo de dashboard · Partner & Ecosystem Intelligence · adaptado do modelo de KPIs semanais da CAMCAR · dados de exemplo"]
+};
+let li=0;
+function mcard(m){return `<div class="m"><div class="v">${m.v}</div><div class="l">${m.l[li]}</div><div class="d ${m.t}">${m.d}</div></div>`;}
+function render(){
+  document.querySelectorAll("[data-i18n]").forEach(el=>{const k=el.getAttribute("data-i18n");if(T[k])el.textContent=T[k][li];});
+  document.getElementById("connect").innerHTML=CONNECT.map(mcard).join("");
+  document.getElementById("execute").innerHTML=EXECUTE.map(mcard).join("");
+  document.getElementById("cosell").innerHTML=COSELL.map(mcard).join("");
+  document.getElementById("consumo").innerHTML=CONSUMO.map(mcard).join("");
+  document.getElementById("scale").innerHTML=SCALE.map(mcard).join("");
+  document.querySelector("#opptbl tbody").innerHTML=OPP.map(o=>`<tr><td>${o.o}</td><td><span class="pill">${o.s}</span></td><td>${o.v}</td><td>${o.c}</td></tr>`).join("");
+  document.documentElement.lang=L[li];
+}
+document.querySelectorAll(".lang button").forEach(b=>b.addEventListener("click",()=>{
+  document.querySelectorAll(".lang button").forEach(x=>x.classList.remove("on"));
+  b.classList.add("on");li=L.indexOf(b.getAttribute("data-lang"));render();
+  try{localStorage.setItem("pei_lang",b.getAttribute("data-lang"))}catch(e){}
+}));
+(function(){try{const s=localStorage.getItem("pei_lang");if(s&&L.includes(s)){li=L.indexOf(s);
+  document.querySelectorAll(".lang button").forEach(x=>x.classList.toggle("on",x.getAttribute("data-lang")===s));}}catch(e){}render();})();
+</script>
+</body>
+</html>
