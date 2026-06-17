@@ -126,6 +126,7 @@
         <a href="#components" data-i18n="navComp">Plataforma</a>
         <a href="#engine" data-i18n="navEng">Motor</a>
         <a href="#roadmap" data-i18n="navRoad">Roadmap</a>
+        <a href="dashboard.html" data-i18n="navKpi">KPIs</a>
       </div>
       <div class="lang">
         <button data-lang="es" class="on">ES</button>
@@ -212,6 +213,13 @@
     <p class="sub" data-i18n="migSub">Oracle ya tiene las herramientas; el valor está en empaquetarlas con metodología (3 fases + 7 Rs), readiness assessment y fábrica de migración. Alcance y disponibilidad por región a validar con producto antes de comprometer fechas.</p>
     <div class="mtools" id="mtools"></div>
     <div class="note warn" data-i18n="migWarn">Validación pendiente: confirmar disponibilidad, alcance e incentivos por región con producto y alianzas antes de comprometer fechas o funding con partners.</div>
+  </section>
+
+  <section id="gov">
+    <div class="eyebrow" data-i18n="govEye">Gobierno y cadencia semanal</div>
+    <h2 data-i18n="govTitle">Lo que no se mide no escala</h2>
+    <p class="sub" data-i18n="govSub">Cada pilar tiene dueño, KPIs y línea base. La cadencia es de sprint: revisión semanal por pilar, checkpoint quincenal con coaches y cierre al día 90. El dashboard vivo — adaptado del modelo de KPIs semanales de CAMCAR — operacionaliza el gobierno: CONNECT, EXECUTE, CO-SELL, consumo OCI/IA y un Health Score.</p>
+    <a class="btn pri" href="dashboard.html" data-i18n="govBtn">Abrir el dashboard de KPIs →</a>
   </section>
 
   <section id="roadmap">
@@ -321,7 +329,7 @@ const ASK = [
 
 const I = {
   brandSub:["AI Challenge FY27 · LATAM · Challenge #4","AI Challenge FY27 · LATAM · Challenge #4","AI Challenge FY27 · LATAM · Challenge #4"],
-  navFw:["Framework","Framework","Framework"],navComp:["Plataforma","Platform","Plataforma"],navSeg:["ELG","ELG","ELG"],
+  navFw:["Framework","Framework","Framework"],navComp:["Plataforma","Platform","Plataforma"],navSeg:["ELG","ELG","ELG"],navKpi:["KPIs","KPIs","KPIs"],
   navEng:["Motor","Engine","Motor"],navRoad:["Roadmap","Roadmap","Roadmap"],
   heroKick:["● AI Challenge FY27 · LATAM","● AI Challenge FY27 · LATAM","● AI Challenge FY27 · LATAM"],
   heroTitle:["De un ecosistema fragmentado a un <span class='g'>motor regional de crecimiento inteligente</span>",
@@ -392,6 +400,12 @@ const I = {
   migWarn:["Validación pendiente: confirmar disponibilidad, alcance e incentivos por región con producto y alianzas antes de comprometer fechas o funding con partners.",
     "Pending validation: confirm availability, scope and incentives per region with product and alliances before committing dates or funding with partners.",
     "Validação pendente: confirmar disponibilidade, escopo e incentivos por região com produto e alianças antes de comprometer datas ou funding com parceiros."],
+  govEye:["Gobierno y cadencia semanal","Governance & weekly cadence","Governança e cadência semanal"],
+  govTitle:["Lo que no se mide no escala","What gets measured scales","O que não se mede não escala"],
+  govSub:["Cada pilar tiene dueño, KPIs y línea base. La cadencia es de sprint: revisión semanal por pilar, checkpoint quincenal con coaches y cierre al día 90. El dashboard vivo — adaptado del modelo de KPIs semanales de CAMCAR — operacionaliza el gobierno: CONNECT, EXECUTE, CO-SELL, consumo OCI/IA y un Health Score.",
+    "Each pillar has an owner, KPIs and a baseline. Sprint cadence: weekly review per pillar, biweekly checkpoint with coaches, close at day 90. The living dashboard — adapted from CAMCAR's weekly KPI model — operationalizes governance: CONNECT, EXECUTE, CO-SELL, OCI/AI consumption and a Health Score.",
+    "Cada pilar tem dono, KPIs e linha base. Cadência de sprint: revisão semanal por pilar, checkpoint quinzenal com coaches e fechamento no dia 90. O dashboard vivo — adaptado do modelo de KPIs semanais da CAMCAR — operacionaliza a governança: CONNECT, EXECUTE, CO-SELL, consumo OCI/IA e um Health Score."],
+  govBtn:["Abrir el dashboard de KPIs →","Open the KPI dashboard →","Abrir o dashboard de KPIs →"],
   roadEye:["Ejecución","Execution","Execução"],
   roadTitle:["Roadmap de 90 días","90-day roadmap","Roadmap de 90 dias"],
   roadSub:["El plan completo se ejecuta en 90 días — la velocidad es una decisión estratégica. Cada mes cierra con un go/no-go medible: si la capacidad no alcanza, se recorta el alcance de los pilotos, no el plan.",
