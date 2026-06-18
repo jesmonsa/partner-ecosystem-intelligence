@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Demo — Partner Intelligence Engine · Encuentra el partner ideal</title>
+<style>
+  :root{
+    --bg:#05080f;--panel:#0e1626;--panel2:#121d31;--line:#1d2942;--txt:#e7edf6;--mut:#9fb0c7;--mut2:#6f819b;
+    --red:#C74634;--red2:#ff6f5e;--grn:#3ddc97;--blu:#5aa9ff;--amb:#f5b942;--vio:#9b8cff;--cyan:#56d4dd;--rad:14px;--maxw:1080px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:radial-gradient(1100px 500px at 85% -10%,#10203a 0,transparent 60%),var(--bg);
+    color:var(--txt);font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+  header{position:sticky;top:0;z-index:30;background:rgba(5,8,15,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  nav{display:flex;align-items:center;gap:14px;height:58px}
+  .brand{font-weight:700;display:flex;align-items:center;gap:9px}
+  .brand .dot{width:10px;height:10px;border-radius:3px;background:var(--red)}
+  .back{font-size:13px;color:var(--mut);margin-left:auto}.back:hover{color:var(--txt)}
+  h1{font-size:clamp(22px,3vw,30px);font-weight:800;letter-spacing:-.4px;margin-top:26px}
+  .lead{color:var(--mut);font-size:15px;margin:8px 0 6px;max-width:760px}
+  .engine{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 6px}
+  .estep{flex:1;min-width:120px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:12px;color:var(--mut);position:relative;transition:.25s}
+  .estep b{display:block;color:var(--txt);font-size:13px;margin-bottom:2px}
+  .estep.on{border-color:var(--amb);box-shadow:0 0 0 1px var(--amb) inset}
+  .estep .n{font-size:10px;font-weight:800;color:var(--red2)}
+  .step{background:var(--panel);border:1px solid var(--line);border-radius:var(--rad);padding:22px;margin:16px 0}
+  .step h2{font-size:18px;margin-bottom:4px;display:flex;align-items:center;gap:10px}
+  .step .badge{font-size:11px;font-weight:800;background:var(--red);color:#fff;border-radius:999px;width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center}
+  .step p.h{color:var(--mut);font-size:13.5px;margin-bottom:14px}
+  .src{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+  @media(max-width:760px){.src{grid-template-columns:repeat(2,1fr)}}
+  .file{background:var(--panel2);border:1px dashed #33456a;border-radius:12px;padding:14px 10px;text-align:center;font-size:12px;color:var(--mut);transition:.4s}
+  .file .ic{font-size:24px;display:block;margin-bottom:6px}
+  .file b{color:var(--txt);font-size:12.5px}
+  .consolidated .file{border-style:solid;border-color:#1c3a2c;background:#0c1f17;opacity:.65;transform:scale(.97)}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border-radius:10px;font-weight:600;font-size:14px;border:1px solid var(--line);background:var(--panel2);color:var(--txt);cursor:pointer;transition:.15s}
+  .btn:hover{border-color:#33456a;transform:translateY(-1px)}
+  .btn.pri{background:var(--red);border-color:var(--red);color:#fff}.btn.pri:hover{background:#d8513f}
+  .btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+  .corpusbar{margin-top:14px;background:#0c1f17;border:1px solid #1c3a2c;color:#bfe9d4;border-radius:10px;padding:10px 14px;font-size:13px;display:none}
+  .corpusbar.show{display:block}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+  .chip{font-size:12.5px;border:1px solid var(--line);background:var(--panel2);color:var(--mut);border-radius:999px;padding:7px 13px;cursor:pointer;transition:.15s}
+  .chip:hover{border-color:var(--blu);color:var(--txt)}
+  .chip.on{background:var(--blu);border-color:var(--blu);color:#04101f;font-weight:700}
+  .fields{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:6px 0 14px}
+  @media(max-width:760px){.fields{grid-template-columns:1fr}}
+  label{font-size:11px;color:var(--mut2);text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:5px}
+  select,input,textarea{width:100%;background:var(--panel2);border:1px solid var(--line);color:var(--txt);border-radius:9px;padding:9px 11px;font-size:13.5px;font-family:inherit}
+  textarea{min-height:60px;resize:vertical}
+  .res{display:flex;flex-direction:column;gap:12px;margin-top:8px}
+  .pcard{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:16px;position:relative;overflow:hidden}
+  .pcard .top{display:flex;align-items:flex-start;gap:12px}
+  .pcard h3{font-size:17px}
+  .pcard .sub{font-size:12px;color:var(--mut2);margin-top:2px}
+  .score{margin-left:auto;text-align:center;min-width:74px}
+  .score .v{font-size:26px;font-weight:800;line-height:1}
+  .score .l{font-size:10px;color:var(--mut2);text-transform:uppercase;letter-spacing:.5px}
+  .bar{height:6px;background:#1b2740;border-radius:999px;overflow:hidden;margin:12px 0 10px}
+  .bar > i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,var(--grn),var(--blu))}
+  .tags{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+  .tag{font-size:11px;border:1px solid var(--line);border-radius:999px;padding:3px 9px;color:var(--mut)}
+  .tag.seg{border:0;color:#04101f;font-weight:700}
+  .tag.Build{background:var(--blu)} .tag.Sell{background:var(--grn)} .tag.Service{background:var(--amb)} .tag.Influence{background:var(--vio);color:#fff}
+  .tag.match{background:#0c1f17;border:1px solid #1c3a2c;color:var(--grn)}
+  .why{font-size:13px;color:var(--mut);margin-top:4px}
+  .why b{color:var(--txt)}
+  .next{margin-top:10px;font-size:13px;color:var(--cyan)}
+  .empty{color:var(--mut2);font-size:14px;padding:10px 0}
+  .foot{padding:26px 0;border-top:1px solid var(--line);color:var(--mut2);font-size:12px;margin-top:26px}
+  .note{background:#1c160a;border:1px solid #3a2f12;color:#f0d9a8;border-radius:10px;padding:9px 13px;font-size:12.5px;margin:14px 0}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  @media(max-width:760px){.grid2{grid-template-columns:1fr}}
+  .ok{color:var(--grn)}
+</style>
+</head>
+<body>
+<header><div class="wrap"><nav>
+  <div class="brand"><span class="dot"></span>Partner Intelligence Engine — Demo</div>
+  <a class="back" href="./index.html">← Volver a la plataforma</a>
+</nav></div></header>
+
+<div class="wrap">
+  <h1>Encuentra el partner adecuado — en segundos, no en correos</h1>
+  <p class="lead">Demostración interactiva del motor: parte de información fragmentada, consolídala en el corpus, busca por proyecto y obtén partners calificados con sus skills, certificaciones y el siguiente paso. <b>Datos ficticios</b> para la demo.</p>
+
+  <div class="engine">
+    <div class="estep" id="e1"><span class="n">01</span><b>Señales</b>Fuentes fragmentadas</div>
+    <div class="estep" id="e2"><span class="n">02</span><b>Score</b>Fit partner-proyecto</div>
+    <div class="estep" id="e3"><span class="n">03</span><b>Matchmaking</b>Recomendación</div>
+    <div class="estep" id="e4"><span class="n">04</span><b>Acción</b>El AE decide</div>
+  </div>
+
+  <div class="step">
+    <h2><span class="badge">1</span> Hoy: la información está dispersa</h2>
+    <p class="h">Los datos del ecosistema viven en archivos sueltos. El primer paso es consolidarlos en un corpus único que la IA pueda leer.</p>
+    <div class="src" id="sources">
+      <div class="file"><span class="ic">📊</span><b>ISVs.xlsx</b><br>niveles OPN, Comp ID</div>
+      <div class="file"><span class="ic">📑</span><b>Estudios .docx</b><br>perfil, portafolio</div>
+      <div class="file"><span class="ic">📧</span><b>Correos</b><br>capacidades, casos</div>
+      <div class="file"><span class="ic">🎓</span><b>Certificaciones</b><br>OCI, especialidades</div>
+      <div class="file"><span class="ic">🗂️</span><b>Notas / SharePoint</b><br>industrias, regiones</div>
+    </div>
+    <div style="margin-top:14px"><button class="btn pri" id="consolidate">Consolidar en el corpus →</button></div>
+    <div class="corpusbar" id="corpusbar"></div>
+  </div>
+
+  <div class="step" id="searchstep" style="opacity:.45;pointer-events:none">
+    <h2><span class="badge">2</span> Busca el partner ideal para un proyecto</h2>
+    <p class="h">Elige un caso predefinido o ajusta los filtros. El motor cruza la necesidad con las capacidades del corpus.</p>
+    <div class="chips" id="chips"></div>
+    <div class="fields">
+      <div><label>Industria</label><select id="f-ind"></select></div>
+      <div><label>Workload / dominio principal</label><select id="f-dom"></select></div>
+      <div><label>Región</label><select id="f-reg"></select></div>
+    </div>
+    <div><label>Descripción del proyecto (opcional)</label><textarea id="f-desc" placeholder="Ej.: migración del core bancario a OCI con mínima interrupción y alta seguridad..."></textarea></div>
+    <div style="margin-top:12px"><button class="btn pri" id="search">🔎 Buscar partners calificados</button></div>
+  </div>
+
+  <div class="step" id="resultstep" style="display:none">
+    <h2><span class="badge">3</span> Partners recomendados</h2>
+    <p class="h" id="reshint"></p>
+    <div class="res" id="results"></div>
+  </div>
+
+  <div class="step" id="feedstep" style="opacity:.45;pointer-events:none">
+    <h2><span class="badge">4</span> Alimenta el sistema</h2>
+    <p class="h">Agrega un partner nuevo al corpus y vuelve a buscar — el motor lo considerará de inmediato. Así el sistema mejora con el uso.</p>
+    <div class="grid2">
+      <div><label>Nombre del partner</label><input id="n-name" placeholder="Ej.: NuevaNube Consulting"></div>
+      <div><label>Segmento ELG</label><select id="n-seg"><option>Build</option><option>Sell</option><option selected>Service</option><option>Influence</option></select></div>
+      <div><label>Nivel OPN</label><select id="n-opn"><option>L1</option><option selected>L2</option><option>L3</option></select></div>
+      <div><label>Región principal</label><select id="n-reg"></select></div>
+      <div><label>Dominios (Ctrl/Cmd para varios)</label><select id="n-dom" multiple size="4"></select></div>
+      <div><label>Industrias (Ctrl/Cmd para varias)</label><select id="n-ind" multiple size="4"></select></div>
+    </div>
+    <div style="margin-top:12px"><button class="btn" id="addp">➕ Agregar al corpus</button> <span id="addmsg" class="ok" style="font-size:13px"></span></div>
+  </div>
+
+  <div class="foot">
+    Demo del Partner Intelligence Engine · Partner &amp; Ecosystem Intelligence · Challenge #4 · datos ficticios · el humano siempre aprueba la recomendación
+  </div>
+</div>
+
+<script>
+const DOMAINS=["DB","IA/GenAI","Kubernetes","Migración","Seguridad","Apps","DevOps","Data"];
+const INDS=["Banca","Fintech","Retail","Gobierno","Seguros","Telecom","Salud"];
+const REGS=["BR","CO","MX","CL","PE"];
+
+let CORPUS=[
+  {name:"NubeAndina Solutions",seg:["Service","Sell"],opn:"L2",dom:["Migración","DB","Seguridad"],ind:["Banca","Seguros"],reg:["CO","PE"],certs:["OCI Architect Associate","ZDM"]},
+  {name:"DataForge LATAM",seg:["Build"],opn:"L1",dom:["IA/GenAI","Data","DevOps"],ind:["Retail","Telecom"],reg:["BR","MX"],certs:["OCI AI Foundations"]},
+  {name:"KoreCloud",seg:["Service"],opn:"L3",dom:["Migración","Kubernetes","DevOps"],ind:["Gobierno","Banca"],reg:["BR","CO","CL"],certs:["OCI Architect Professional","VMware HCX"]},
+  {name:"FinTechWorks",seg:["Build","Influence"],opn:"L2",dom:["IA/GenAI","Apps","Seguridad"],ind:["Banca","Fintech"],reg:["BR"],certs:["OCI Foundations"]},
+  {name:"MigraPro Consulting",seg:["Service"],opn:"L2",dom:["Migración","DB"],ind:["Seguros","Gobierno"],reg:["MX"],certs:["ZDM","GoldenGate"]},
+  {name:"RetailNova",seg:["Build"],opn:"L1",dom:["IA/GenAI","Apps","Data"],ind:["Retail"],reg:["BR","CL"],certs:["OCI AI Foundations"]},
+  {name:"GovTech Andina",seg:["Service","Influence"],opn:"L2",dom:["Seguridad","DB","Migración"],ind:["Gobierno"],reg:["CO","PE"],certs:["OCI Security Associate"]},
+  {name:"KuberLabs",seg:["Build","Service"],opn:"L2",dom:["Kubernetes","DevOps","IA/GenAI"],ind:["Telecom","Retail"],reg:["BR","MX"],certs:["OKE Specialist"]},
+  {name:"SeguroCloud",seg:["Service"],opn:"L1",dom:["DB","Seguridad","Migración"],ind:["Seguros","Salud"],reg:["CO","MX"],certs:["OCI Foundations"]},
+  {name:"OpenBank Partners",seg:["Sell","Build"],opn:"L3",dom:["Apps","IA/GenAI","Seguridad"],ind:["Banca","Fintech"],reg:["BR","MX","CL"],certs:["OCI Foundations","OCI Architect Associate"]}
+];
+
+const PRESETS=[
+  {label:"Migración Core Banking a OCI",ind:"Banca",dom:"Migración",reg:"BR",need:["Migración","DB","Seguridad"]},
+  {label:"Plataforma de IA/GenAI para retail",ind:"Retail",dom:"IA/GenAI",reg:"BR",need:["IA/GenAI","Apps","Data"]},
+  {label:"Modernización con Kubernetes (OKE)",ind:"Telecom",dom:"Kubernetes",reg:"MX",need:["Kubernetes","DevOps","Apps"]},
+  {label:"Data Lake para gobierno",ind:"Gobierno",dom:"Data",reg:"CO",need:["Data","DB","Seguridad"]},
+  {label:"Open Finance / fintech",ind:"Fintech",dom:"IA/GenAI",reg:"BR",need:["IA/GenAI","Apps","Seguridad"]}
+];
+
+const $=id=>document.getElementById(id);
+function fillSelect(el,arr,any){el.innerHTML=(any?`<option value="">${any}</option>`:"")+arr.map(x=>`<option>${x}</option>`).join("");}
+fillSelect($("f-ind"),INDS,"Cualquiera");fillSelect($("f-dom"),DOMAINS,"Cualquiera");fillSelect($("f-reg"),REGS,"Cualquiera");
+fillSelect($("n-reg"),REGS);
+$("n-dom").innerHTML=DOMAINS.map(x=>`<option>${x}</option>`).join("");
+$("n-ind").innerHTML=INDS.map(x=>`<option>${x}</option>`).join("");
+
+$("chips").innerHTML=PRESETS.map((p,i)=>`<span class="chip" data-i="${i}">${p.label}</span>`).join("");
+let activeNeed=null;
+document.querySelectorAll(".chip").forEach(ch=>ch.addEventListener("click",()=>{
+  document.querySelectorAll(".chip").forEach(x=>x.classList.remove("on"));ch.classList.add("on");
+  const p=PRESETS[+ch.dataset.i]; $("f-ind").value=p.ind;$("f-dom").value=p.dom;$("f-reg").value=p.reg;
+  activeNeed=p.need.slice(); $("f-desc").value="";
+}));
+
+function lite(id){["e1","e2","e3","e4"].forEach(x=>$(x).classList.remove("on"));if(id)$(id).classList.add("on");}
+
+$("consolidate").addEventListener("click",()=>{
+  $("sources").classList.add("consolidated"); lite("e1");
+  $("corpusbar").classList.add("show");
+  $("corpusbar").innerHTML=`✓ Corpus consolidado — <b>${CORPUS.length} partners</b> desde 5 fuentes. La IA ya puede leer capacidades, certificaciones, industrias y regiones.`;
+  $("consolidate").disabled=true; $("consolidate").textContent="✓ Consolidado";
+  enable("searchstep"); enable("feedstep");
+  window.scrollTo({top:$("searchstep").offsetTop-70,behavior:"smooth"});
+});
+function enable(id){$(id).style.opacity="1";$(id).style.pointerEvents="auto";}
+
+function score(p,need,ind,reg,desc){
+  let s=0; const reasons=[]; const matched=[];
+  const txt=(desc||"").toLowerCase();
+  const needs = need? need.slice() : [];
+  DOMAINS.forEach(d=>{ if(txt.includes(d.toLowerCase().split("/")[0]) && !needs.includes(d)) needs.push(d); });
+  let domHits=0;
+  needs.forEach(d=>{ if(p.dom.includes(d)){domHits++; matched.push(d);} });
+  if(needs.length){ const r=domHits/needs.length; s+=r*55; if(domHits) reasons.push(`${domHits}/${needs.length} dominios clave`); }
+  if(ind && p.ind.includes(ind)){ s+=22; reasons.push(`experiencia en ${ind}`); }
+  if(reg && p.reg.includes(reg)){ s+=13; reasons.push(`presencia en ${reg}`); }
+  if(p.certs.length){ s+=Math.min(p.certs.length*3,10); }
+  const opnB={L1:2,L2:5,L3:8}[p.opn]||0; s+=opnB;
+  s=Math.min(Math.round(s),99);
+  return {s,reasons,matched};
+}
+function nextStep(seg){
+  if(seg.includes("Service")) return "Siguiente paso: assessment / PoC de migración con readiness";
+  if(seg.includes("Build")) return "Siguiente paso: Oracle Day técnico + arquitectura del repo (one-click)";
+  if(seg.includes("Sell")) return "Siguiente paso: co-sell estructurado + calificación BANT";
+  return "Siguiente paso: sesión ejecutiva / introducción de ecosistema";
+}
+
+$("search").addEventListener("click",()=>{
+  const ind=$("f-ind").value, dom=$("f-dom").value, reg=$("f-reg").value, desc=$("f-desc").value;
+  let need = activeNeed ? activeNeed.slice() : [];
+  if(dom && !need.includes(dom)) need.push(dom);
+  lite("e2"); setTimeout(()=>lite("e3"),350);
+  const ranked=CORPUS.map(p=>({p,...score(p,need,ind,reg,desc)}))
+    .filter(x=>x.s>0).sort((a,b)=>b.s-a.s).slice(0,4);
+  const rs=$("results");
+  if(!ranked.length){ rs.innerHTML=`<div class="empty">Sin coincidencias claras. Ajusta los filtros o alimenta el corpus con un partner del perfil buscado (paso 4).</div>`; }
+  else{
+    rs.innerHTML=ranked.map((x,i)=>{
+      const p=x.p; const segs=p.seg.map(g=>`<span class="tag seg ${g}">${g}</span>`).join("");
+      const certs=p.certs.map(c=>`<span class="tag">🎓 ${c}</span>`).join("");
+      const matched=x.matched.map(m=>`<span class="tag match">✓ ${m}</span>`).join("");
+      return `<div class="pcard">
+        <div class="top">
+          <div><h3>${i===0?"⭐ ":""}${p.name}</h3>
+            <div class="sub">OPN ${p.opn} · ${p.reg.join(" · ")} · ${p.ind.join(", ")}</div></div>
+          <div class="score"><div class="v" style="color:${x.s>=70?'var(--grn)':x.s>=45?'var(--amb)':'var(--mut)'}">${x.s}<span style="font-size:13px;color:var(--mut2)">%</span></div><div class="l">fit score</div></div>
+        </div>
+        <div class="bar"><i style="width:${x.s}%"></i></div>
+        <div class="tags">${segs}${matched}</div>
+        <div class="why"><b>Por qué encaja:</b> ${x.reasons.length?x.reasons.join(" · "):"coincidencia parcial por perfil general"}.</div>
+        <div class="tags">${certs}</div>
+        <div class="next">→ ${nextStep(p.seg)}</div>
+      </div>`;
+    }).join("");
+  }
+  $("resultstep").style.display="block";
+  $("reshint").innerHTML=`El motor evaluó <b>${CORPUS.length} partners</b> y ordenó por fit. <b>El AE decide y aprueba</b> — la IA solo recomienda.`;
+  lite("e3");
+  window.scrollTo({top:$("resultstep").offsetTop-70,behavior:"smooth"});
+});
+
+$("addp").addEventListener("click",()=>{
+  const name=$("n-name").value.trim(); if(!name){$("addmsg").textContent="";$("n-name").focus();return;}
+  const dom=[...$("n-dom").selectedOptions].map(o=>o.value);
+  const ind=[...$("n-ind").selectedOptions].map(o=>o.value);
+  CORPUS.push({name,seg:[$("n-seg").value],opn:$("n-opn").value,dom:dom.length?dom:["Apps"],ind:ind.length?ind:["Banca"],reg:[$("n-reg").value],certs:["OCI Foundations"]});
+  lite("e1");
+  $("addmsg").textContent=`✓ ${name} agregado — corpus: ${CORPUS.length} partners. Vuelve a buscar.`;
+  $("corpusbar").innerHTML=`✓ Corpus actualizado — <b>${CORPUS.length} partners</b>. El motor ya lo considera en la próxima búsqueda.`;
+  $("n-name").value="";
+});
+</script>
+</body>
+</html>
