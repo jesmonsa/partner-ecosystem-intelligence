@@ -48,7 +48,7 @@
   .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--rad);padding:18px}
   .card h3{font-size:13px;color:var(--mut);font-weight:700;text-transform:uppercase;letter-spacing:.6px;margin-bottom:12px}
   table{width:100%;border-collapse:collapse;font-size:13px}
-  th,td{text-align:left;padding:7px 6px;border-bottom:1px solid var(--line)}
+  th,td{text-align:left;padding:8px 8px;border-bottom:1px solid var(--line);vertical-align:top}
   th{color:var(--mut2);font-size:11px;text-transform:uppercase;letter-spacing:.5px}
   .pill{font-size:11px;padding:2px 8px;border-radius:999px;border:1px solid var(--line);color:var(--mut)}
   .lossbar{height:7px;background:#1b2740;border-radius:999px;overflow:hidden;margin-top:4px}
@@ -59,6 +59,10 @@
   summary:before{content:"▸ ";color:var(--amb)}
   details[open] summary:before{content:"▾ "}
   .deep{font-size:12px;color:var(--mut2);margin:2px 0 12px}
+  details.legend summary{color:var(--blu)} details.legend summary:before{content:"▸ ";color:var(--blu)} details.legend[open] summary:before{content:"▾ ";color:var(--blu)}
+  .lg .knm{font-weight:700;color:var(--txt)} .lg .knm .ic{margin-right:6px}
+  .lg .g{color:var(--grn);font-weight:700} .lg .r{color:var(--red2);font-weight:700}
+  .lg .src{font-size:11.5px;color:var(--mut2)} .lg .src b{color:var(--mut);font-weight:600}
   .foot{padding:26px 0;border-top:1px solid var(--line);color:var(--mut2);font-size:12px;margin-top:26px}
 </style>
 </head>
@@ -83,13 +87,19 @@
   <div class="adopt">
     <div>
       <div class="lbl" data-i18n="adoptLbl">Adopción del modelo (contexto)</div>
-      <div class="big">61%<span style="font-size:14px;color:var(--mut2)"> </span></div>
+      <div class="big">61%</div>
       <div class="d" data-i18n="adoptD">▲ +6 pp vs sem. anterior · oportunidades con partner</div>
     </div>
     <div class="caveat" data-i18n="caveat">Ojo: si la adopción sube pero el win rate y el ciclo no mejoran, estamos canibalizando negocio directo, no generando influencia real.</div>
   </div>
 
   <div class="grid" id="kpis"></div>
+
+  <details class="legend" open>
+    <summary data-i18n="legendT">Qué mide cada KPI (capa ejecutiva)</summary>
+    <div class="deep" data-i18n="legendSub">Los 5 indicadores que conducen la historia — sin el detalle analítico. Esta es la capa que importa mirar.</div>
+    <table id="legend"></table>
+  </details>
 
   <details>
     <summary data-i18n="lossT">Profundización — Loss review (por qué se perdió)</summary>
@@ -109,15 +119,25 @@
 const L=["es","en","pt"];
 const KPIS=[
   {ic:"🌱",name:["Generación partner-sourced","Partner-sourced generation","Geração partner-sourced"],v:"9",vs:["opps nuevas","new opps","opps novas"],d:"+3",t:"up",
-   exp:["Oportunidades nuevas que trajo el partner — no Oracle ni el equipo técnico.","New opportunities the partner brought in — not Oracle or the tech team.","Oportunidades novas que o parceiro trouxe — não a Oracle nem o time técnico."]},
+   exp:["Oportunidades nuevas que trajo el partner — no Oracle ni el equipo técnico.","New opportunities the partner brought in — not Oracle or the tech team.","Oportunidades novas que o parceiro trouxe — não a Oracle nem o time técnico."],
+   why:["El ROI real de involucrar al partner: que traiga negocio, no solo que ejecute.","The real ROI of involving the partner: bring business, not just execute.","O ROI real de envolver o parceiro: trazer negócio, não só executar."],
+   read:["g|↑ buena. Si ~0, el partner no genera"],src:["CRM (origen de la opp)","CRM (opp source)","CRM (origem da opp)"]},
   {ic:"📊",name:["Pipeline activo y movimiento","Active pipeline & movement","Pipeline ativo e movimento"],v:"27",vs:["open · →Won 6 · →Lost 3","open · →Won 6 · →Lost 3","open · →Won 6 · →Lost 3"],d:"+8%",t:"up",
-   exp:["Pipeline vivo con partner y hacia dónde se mueve (ganado vs perdido).","Live partner pipeline and where it moves (won vs lost).","Pipeline vivo com parceiro e para onde se move (ganho vs perdido)."]},
+   exp:["Pipeline vivo con partner y hacia dónde se mueve (ganado vs perdido).","Live partner pipeline and where it moves (won vs lost).","Pipeline vivo com parceiro e para onde se move (ganho vs perdido)."],
+   why:["Salud del pipeline; detecta si las opps avanzan o solo se caen.","Pipeline health; spots whether opps advance or just drop.","Saúde do pipeline; detecta se as opps avançam ou só caem."],
+   read:["m|Activas que migran a Won = bien; a Lost = alerta"],src:["CRM (stage)","CRM (stage)","CRM (stage)"]},
   {ic:"🎯",name:["Win rate (conversión)","Win rate (conversion)","Win rate (conversão)"],v:"38",vs:["%","%","%"],d:"+5 pp",t:"up",
-   exp:["De cada 10 opps con partner, cuántas ganamos. ¿Con partner ganamos más?","Of every 10 partner opps, how many we win. Do we win more with partners?","De cada 10 opps com parceiro, quantas ganhamos. Ganhamos mais com parceiro?"]},
+   exp:["De cada 10 opps con partner, cuántas ganamos. ¿Con partner ganamos más?","Of every 10 partner opps, how many we win.","De cada 10 opps com parceiro, quantas ganhamos."],
+   why:["Mide si el partner realmente nos hace ganar más.","Measures whether the partner truly makes us win more.","Mede se o parceiro realmente nos faz ganhar mais."],
+   read:["g|↑ buena"],src:["CRM","CRM","CRM"]},
   {ic:"⏱️",name:["Ciclo de venta (aging)","Sales cycle (aging)","Ciclo de venda (aging)"],v:"78",vs:["días","days","dias"],d:"-12",t:"up",
-   exp:["Tiempo de generación a cierre. Menos días = el partner progresa, no se estanca.","Time from generation to close. Fewer days = the partner progresses.","Tempo de geração até fechamento. Menos dias = o parceiro progride."]},
+   exp:["Tiempo de generación a cierre. Menos días = el partner progresa.","Time from generation to close. Fewer days = the partner progresses.","Tempo de geração até fechamento. Menos dias = o parceiro progride."],
+   why:["Si el aging sube (ej. 150 días), el partner no progresa.","If aging rises (e.g. 150 days), the partner isn't progressing.","Se o aging sobe (ex. 150 dias), o parceiro não progride."],
+   read:["g|↓ buena"],src:["CRM (fechas de stage)","CRM (stage dates)","CRM (datas de stage)"]},
   {ic:"⛽",name:["Anticipación de consumo","Consumption anticipation","Antecipação de consumo"],v:"$418K",vs:["rampa OCI","OCI ramp","rampa OCI"],d:"+15%",t:"up",
-   exp:["Rampa de consumo OCI que adelantan las opps con partner. Conecta con el vendedor.","OCI consumption ramp that partner opps bring forward. Ties to the seller.","Rampa de consumo OCI antecipada pelas opps com parceiro. Conecta com o vendedor."]}
+   exp:["Rampa de consumo OCI que adelantan las opps con partner.","OCI consumption ramp that partner opps bring forward.","Rampa de consumo OCI antecipada pelas opps com parceiro."],
+   why:["Conecta con el vendedor: el partner adelanta el revenue/consumo.","Ties to the seller: the partner brings revenue/consumption forward.","Conecta com o vendedor: o parceiro antecipa o revenue/consumo."],
+   read:["g|↑ buena"],src:["CRM + consumo OCI","CRM + OCI consumption","CRM + consumo OCI"]}
 ];
 const MOVE=[
   {l:["→ Ganadas (Won)","→ Won","→ Ganhas (Won)"],v:"6",c:"up"},
@@ -153,17 +173,30 @@ const T={
   caveat:["Ojo: si la adopción sube pero el win rate y el ciclo no mejoran, estamos canibalizando negocio directo, no generando influencia real.",
     "Watch out: if adoption rises but win rate and cycle don't improve, we're cannibalizing direct business, not creating real influence.",
     "Atenção: se a adoção sobe mas o win rate e o ciclo não melhoram, estamos canibalizando negócio direto, não gerando influência real."],
+  legendT:["Qué mide cada KPI (capa ejecutiva)","What each KPI measures (executive layer)","O que cada KPI mede (camada executiva)"],
+  legendSub:["Los 5 indicadores que conducen la historia — sin el detalle analítico. Esta es la capa que importa mirar.",
+    "The 5 indicators that drive the story — without the analytical detail. This is the layer that matters.",
+    "Os 5 indicadores que conduzem a história — sem o detalhe analítico. Esta é a camada que importa."],
   lossT:["Profundización — Loss review (por qué se perdió)","Deep dive — Loss review (why we lost)","Aprofundamento — Loss review (por que perdemos)"],
   lossSub:["Capa analítica opcional. No es KPI del tablero principal; sirve para aprender de las oportunidades cerradas-perdidas con partner.",
     "Optional analytics layer. Not a core dashboard KPI; helps learn from closed-lost partner opportunities.",
     "Camada analítica opcional. Não é KPI do painel principal; ajuda a aprender das oportunidades closed-lost com parceiro."],
   moveT:["Movimiento del pipeline (semana)","Pipeline movement (week)","Movimento do pipeline (semana)"],
   oppT:["Oportunidades activas con partner","Active partner opportunities","Oportunidades ativas com parceiro"],
+  thKpi:["KPI","KPI","KPI"],thMide:["Qué mide","What it measures","O que mede"],
+  thWhy:["Por qué le importa a HT","Why it matters to HT","Por que importa ao HT"],
+  thRead:["Lectura","Reading","Leitura"],thSrc:["Fuente","Source","Fonte"],
   foot:["KPIs del MVP · Partner & Ecosystem Intelligence · Challenge #4 · acotados según definición del equipo · datos de ejemplo",
     "MVP KPIs · Partner & Ecosystem Intelligence · Challenge #4 · scoped per team definition · sample data",
     "KPIs do MVP · Partner & Ecosystem Intelligence · Challenge #4 · delimitados conforme definição do time · dados de exemplo"]
 };
 let li=0;
+function readHtml(read){
+  const raw=read[0]; const parts=raw.split("|"); const type=parts[0]; let txt=parts[1];
+  if(type==="g") return `<span class="g">${txt}</span>`;
+  if(type==="m") return txt.replace("Won = bien",'<span class="g">Won = bien</span>').replace("Lost = alerta",'<span class="r">Lost = alerta</span>');
+  return txt;
+}
 function render(){
   document.querySelectorAll("[data-i18n]").forEach(el=>{const k=el.getAttribute("data-i18n");if(T[k])el.textContent=T[k][li];});
   document.getElementById("kpis").innerHTML=KPIS.map(k=>`
@@ -171,6 +204,8 @@ function render(){
       <div class="v">${k.v} <small>${k.vs[li]}</small></div>
       <div class="d ${k.t}">${k.d}</div>
       <div class="exp">${k.exp[li]}</div></div>`).join("");
+  document.getElementById("legend").innerHTML=`<thead><tr><th>${T.thKpi[li]}</th><th>${T.thMide[li]}</th><th>${T.thWhy[li]}</th><th>${T.thRead[li]}</th><th>${T.thSrc[li]}</th></tr></thead><tbody class="lg">`+
+    KPIS.map(k=>`<tr><td class="knm"><span class="ic">${k.ic}</span>${k.name[li]}</td><td>${k.exp[li]}</td><td>${k.why[li]}</td><td>${readHtml(k.read)}</td><td class="src"><b>${k.src[li]}</b></td></tr>`).join("")+`</tbody>`;
   document.getElementById("move").innerHTML="<tbody>"+MOVE.map(m=>`<tr><td>${m.l[li]}</td><td style="text-align:right" class="${m.c}">${m.v}</td></tr>`).join("")+"</tbody>";
   document.getElementById("opps").innerHTML="<tbody>"+OPPS.map(o=>`<tr><td>${o.o}</td><td><span class="pill">${o.s}</span></td><td style="text-align:right">${o.v}</td></tr>`).join("")+"</tbody>";
   document.getElementById("loss").innerHTML=LOSS.map(x=>`<div style="margin-bottom:9px"><div style="display:flex;font-size:12.5px"><span>${x.r[li]}</span><span style="margin-left:auto;color:var(--mut)">${x.p}%</span></div><div class="lossbar"><i style="width:${x.p}%"></i></div></div>`).join("");
