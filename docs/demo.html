@@ -68,10 +68,16 @@
   .tag.match{background:#0c1f17;border:1px solid #1c3a2c;color:var(--grn)}
   .why{font-size:13px;color:var(--mut);margin-top:4px}
   .why b{color:var(--txt)}
+  .cases{margin-top:12px;border-top:1px solid var(--line);padding-top:10px}
+  .ct{font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--mut2);margin-bottom:7px}
+  .ci{font-size:12.5px;color:var(--mut);padding:6px 10px;border:1px solid var(--line);border-radius:9px;margin-bottom:6px;display:flex;gap:8px;align-items:flex-start}
+  .ci b{color:var(--txt)}
+  .ci .cind{margin-left:auto;font-size:10.5px;color:var(--mut2);border:1px solid var(--line);border-radius:999px;padding:1px 8px;white-space:nowrap}
+  .ci.rel{border-color:#3a2f12;background:#1c160a;color:#f0d9a8}
+  .ci.rel b{color:#fff}
   .next{margin-top:10px;font-size:13px;color:var(--cyan)}
   .empty{color:var(--mut2);font-size:14px;padding:10px 0}
   .foot{padding:26px 0;border-top:1px solid var(--line);color:var(--mut2);font-size:12px;margin-top:26px}
-  .note{background:#1c160a;border:1px solid #3a2f12;color:#f0d9a8;border-radius:10px;padding:9px 13px;font-size:12.5px;margin:14px 0}
   .grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
   @media(max-width:760px){.grid2{grid-template-columns:1fr}}
   .ok{color:var(--grn)}
@@ -85,7 +91,7 @@
 
 <div class="wrap">
   <h1>Encuentra el partner adecuado — en segundos, no en correos</h1>
-  <p class="lead">Demostración interactiva del motor: parte de información fragmentada, consolídala en el corpus, busca por proyecto y obtén partners calificados con sus skills, certificaciones y el siguiente paso. <b>Datos ficticios</b> para la demo.</p>
+  <p class="lead">Demostración interactiva del motor: parte de información fragmentada, consolídala en el corpus, busca por proyecto y obtén partners calificados con sus skills, certificaciones y <b>casos de éxito</b>. <b>Datos ficticios</b> para la demo.</p>
 
   <div class="engine">
     <div class="estep" id="e1"><span class="n">01</span><b>Señales</b>Fuentes fragmentadas</div>
@@ -96,11 +102,11 @@
 
   <div class="step">
     <h2><span class="badge">1</span> Hoy: la información está dispersa</h2>
-    <p class="h">Los datos del ecosistema viven en archivos sueltos. El primer paso es consolidarlos en un corpus único que la IA pueda leer.</p>
+    <p class="h">Los datos del ecosistema viven en archivos sueltos — incluidos los casos de éxito, perdidos en correos y presentaciones. El primer paso es consolidarlos en un corpus único que la IA pueda leer.</p>
     <div class="src" id="sources">
       <div class="file"><span class="ic">📊</span><b>ISVs.xlsx</b><br>niveles OPN, Comp ID</div>
       <div class="file"><span class="ic">📑</span><b>Estudios .docx</b><br>perfil, portafolio</div>
-      <div class="file"><span class="ic">📧</span><b>Correos</b><br>capacidades, casos</div>
+      <div class="file"><span class="ic">🏆</span><b>Casos de éxito</b><br>referencias, resultados</div>
       <div class="file"><span class="ic">🎓</span><b>Certificaciones</b><br>OCI, especialidades</div>
       <div class="file"><span class="ic">🗂️</span><b>Notas / SharePoint</b><br>industrias, regiones</div>
     </div>
@@ -110,7 +116,7 @@
 
   <div class="step" id="searchstep" style="opacity:.45;pointer-events:none">
     <h2><span class="badge">2</span> Busca el partner ideal para un proyecto</h2>
-    <p class="h">Elige un caso predefinido o ajusta los filtros. El motor cruza la necesidad con las capacidades del corpus.</p>
+    <p class="h">Elige un caso predefinido o ajusta los filtros. El motor cruza la necesidad con capacidades, certificaciones y casos de éxito del corpus.</p>
     <div class="chips" id="chips"></div>
     <div class="fields">
       <div><label>Industria</label><select id="f-ind"></select></div>
@@ -129,7 +135,7 @@
 
   <div class="step" id="feedstep" style="opacity:.45;pointer-events:none">
     <h2><span class="badge">4</span> Alimenta el sistema</h2>
-    <p class="h">Agrega un partner nuevo al corpus y vuelve a buscar — el motor lo considerará de inmediato. Así el sistema mejora con el uso.</p>
+    <p class="h">Agrega un partner nuevo (con su caso de éxito) al corpus y vuelve a buscar — el motor lo considerará de inmediato. Así el sistema mejora con el uso.</p>
     <div class="grid2">
       <div><label>Nombre del partner</label><input id="n-name" placeholder="Ej.: NuevaNube Consulting"></div>
       <div><label>Segmento ELG</label><select id="n-seg"><option>Build</option><option>Sell</option><option selected>Service</option><option>Influence</option></select></div>
@@ -137,6 +143,10 @@
       <div><label>Región principal</label><select id="n-reg"></select></div>
       <div><label>Dominios (Ctrl/Cmd para varios)</label><select id="n-dom" multiple size="4"></select></div>
       <div><label>Industrias (Ctrl/Cmd para varias)</label><select id="n-ind" multiple size="4"></select></div>
+    </div>
+    <div class="grid2" style="margin-top:10px">
+      <div><label>Caso de éxito — cliente / referencia</label><input id="n-cli" placeholder="Ej.: Banco regional Andino"></div>
+      <div><label>Caso de éxito — resultado</label><input id="n-out" placeholder="Ej.: migración de core a OCI, cutover sin downtime"></div>
     </div>
     <div style="margin-top:12px"><button class="btn" id="addp">➕ Agregar al corpus</button> <span id="addmsg" class="ok" style="font-size:13px"></span></div>
   </div>
@@ -152,16 +162,26 @@ const INDS=["Banca","Fintech","Retail","Gobierno","Seguros","Telecom","Salud"];
 const REGS=["BR","CO","MX","CL","PE"];
 
 let CORPUS=[
-  {name:"NubeAndina Solutions",seg:["Service","Sell"],opn:"L2",dom:["Migración","DB","Seguridad"],ind:["Banca","Seguros"],reg:["CO","PE"],certs:["OCI Architect Associate","ZDM"]},
-  {name:"DataForge LATAM",seg:["Build"],opn:"L1",dom:["IA/GenAI","Data","DevOps"],ind:["Retail","Telecom"],reg:["BR","MX"],certs:["OCI AI Foundations"]},
-  {name:"KoreCloud",seg:["Service"],opn:"L3",dom:["Migración","Kubernetes","DevOps"],ind:["Gobierno","Banca"],reg:["BR","CO","CL"],certs:["OCI Architect Professional","VMware HCX"]},
-  {name:"FinTechWorks",seg:["Build","Influence"],opn:"L2",dom:["IA/GenAI","Apps","Seguridad"],ind:["Banca","Fintech"],reg:["BR"],certs:["OCI Foundations"]},
-  {name:"MigraPro Consulting",seg:["Service"],opn:"L2",dom:["Migración","DB"],ind:["Seguros","Gobierno"],reg:["MX"],certs:["ZDM","GoldenGate"]},
-  {name:"RetailNova",seg:["Build"],opn:"L1",dom:["IA/GenAI","Apps","Data"],ind:["Retail"],reg:["BR","CL"],certs:["OCI AI Foundations"]},
-  {name:"GovTech Andina",seg:["Service","Influence"],opn:"L2",dom:["Seguridad","DB","Migración"],ind:["Gobierno"],reg:["CO","PE"],certs:["OCI Security Associate"]},
-  {name:"KuberLabs",seg:["Build","Service"],opn:"L2",dom:["Kubernetes","DevOps","IA/GenAI"],ind:["Telecom","Retail"],reg:["BR","MX"],certs:["OKE Specialist"]},
-  {name:"SeguroCloud",seg:["Service"],opn:"L1",dom:["DB","Seguridad","Migración"],ind:["Seguros","Salud"],reg:["CO","MX"],certs:["OCI Foundations"]},
-  {name:"OpenBank Partners",seg:["Sell","Build"],opn:"L3",dom:["Apps","IA/GenAI","Seguridad"],ind:["Banca","Fintech"],reg:["BR","MX","CL"],certs:["OCI Foundations","OCI Architect Associate"]}
+  {name:"NubeAndina Solutions",seg:["Service","Sell"],opn:"L2",dom:["Migración","DB","Seguridad"],ind:["Banca","Seguros"],reg:["CO","PE"],certs:["OCI Architect Associate","ZDM"],
+    cases:[{cli:"Banco regional Andino",ind:"Banca",out:"migración de core a OCI, cutover sin downtime con ZDM"},{cli:"Aseguradora Sur",ind:"Seguros",out:"consolidación de BD en Exadata, -35% TCO"}]},
+  {name:"DataForge LATAM",seg:["Build"],opn:"L1",dom:["IA/GenAI","Data","DevOps"],ind:["Retail","Telecom"],reg:["BR","MX"],certs:["OCI AI Foundations"],
+    cases:[{cli:"Cadena retail BR",ind:"Retail",out:"motor de recomendación con OCI Generative AI"},{cli:"Telco MX",ind:"Telecom",out:"data lakehouse para predicción de churn"}]},
+  {name:"KoreCloud",seg:["Service"],opn:"L3",dom:["Migración","Kubernetes","DevOps"],ind:["Gobierno","Banca"],reg:["BR","CO","CL"],certs:["OCI Architect Professional","VMware HCX"],
+    cases:[{cli:"Entidad pública federal",ind:"Gobierno",out:"migración de 120 VMs con HCX a OCVS"},{cli:"Banco BR",ind:"Banca",out:"modernización de apps a OKE"}]},
+  {name:"FinTechWorks",seg:["Build","Influence"],opn:"L2",dom:["IA/GenAI","Apps","Seguridad"],ind:["Banca","Fintech"],reg:["BR"],certs:["OCI Foundations"],
+    cases:[{cli:"Neobank BR",ind:"Fintech",out:"onboarding digital con IA, fraude -22%"}]},
+  {name:"MigraPro Consulting",seg:["Service"],opn:"L2",dom:["Migración","DB"],ind:["Seguros","Gobierno"],reg:["MX"],certs:["ZDM","GoldenGate"],
+    cases:[{cli:"Aseguradora MX",ind:"Seguros",out:"migración heterogénea con GoldenGate y coexistencia híbrida"}]},
+  {name:"RetailNova",seg:["Build"],opn:"L1",dom:["IA/GenAI","Apps","Data"],ind:["Retail"],reg:["BR","CL"],certs:["OCI AI Foundations"],
+    cases:[{cli:"Retailer CL",ind:"Retail",out:"asistente de IA para atención, NPS +15"}]},
+  {name:"GovTech Andina",seg:["Service","Influence"],opn:"L2",dom:["Seguridad","DB","Migración"],ind:["Gobierno"],reg:["CO","PE"],certs:["OCI Security Associate"],
+    cases:[{cli:"Entidad pública CO",ind:"Gobierno",out:"plataforma segura con Cloud Guard + IAM"}]},
+  {name:"KuberLabs",seg:["Build","Service"],opn:"L2",dom:["Kubernetes","DevOps","IA/GenAI"],ind:["Telecom","Retail"],reg:["BR","MX"],certs:["OKE Specialist"],
+    cases:[{cli:"Telco BR",ind:"Telecom",out:"microservicios en OKE, despliegues 5x más rápidos"}]},
+  {name:"SeguroCloud",seg:["Service"],opn:"L1",dom:["DB","Seguridad","Migración"],ind:["Seguros","Salud"],reg:["CO","MX"],certs:["OCI Foundations"],
+    cases:[{cli:"EPS de Salud",ind:"Salud",out:"BD crítica en Autonomous con alta disponibilidad"}]},
+  {name:"OpenBank Partners",seg:["Sell","Build"],opn:"L3",dom:["Apps","IA/GenAI","Seguridad"],ind:["Banca","Fintech"],reg:["BR","MX","CL"],certs:["OCI Foundations","OCI Architect Associate"],
+    cases:[{cli:"Banco MX",ind:"Banca",out:"open finance / APIs con seguridad OCI"}]}
 ];
 
 const PRESETS=[
@@ -192,7 +212,8 @@ function lite(id){["e1","e2","e3","e4"].forEach(x=>$(x).classList.remove("on"));
 $("consolidate").addEventListener("click",()=>{
   $("sources").classList.add("consolidated"); lite("e1");
   $("corpusbar").classList.add("show");
-  $("corpusbar").innerHTML=`✓ Corpus consolidado — <b>${CORPUS.length} partners</b> desde 5 fuentes. La IA ya puede leer capacidades, certificaciones, industrias y regiones.`;
+  const ncases=CORPUS.reduce((a,p)=>a+p.cases.length,0);
+  $("corpusbar").innerHTML=`✓ Corpus consolidado — <b>${CORPUS.length} partners</b> y <b>${ncases} casos de éxito</b> desde 5 fuentes. La IA ya puede leer capacidades, certificaciones, referencias, industrias y regiones.`;
   $("consolidate").disabled=true; $("consolidate").textContent="✓ Consolidado";
   enable("searchstep"); enable("feedstep");
   window.scrollTo({top:$("searchstep").offsetTop-70,behavior:"smooth"});
@@ -206,11 +227,13 @@ function score(p,need,ind,reg,desc){
   DOMAINS.forEach(d=>{ if(txt.includes(d.toLowerCase().split("/")[0]) && !needs.includes(d)) needs.push(d); });
   let domHits=0;
   needs.forEach(d=>{ if(p.dom.includes(d)){domHits++; matched.push(d);} });
-  if(needs.length){ const r=domHits/needs.length; s+=r*55; if(domHits) reasons.push(`${domHits}/${needs.length} dominios clave`); }
-  if(ind && p.ind.includes(ind)){ s+=22; reasons.push(`experiencia en ${ind}`); }
-  if(reg && p.reg.includes(reg)){ s+=13; reasons.push(`presencia en ${reg}`); }
-  if(p.certs.length){ s+=Math.min(p.certs.length*3,10); }
+  if(needs.length){ const r=domHits/needs.length; s+=r*48; if(domHits) reasons.push(`${domHits}/${needs.length} dominios clave`); }
+  if(ind && p.ind.includes(ind)){ s+=18; reasons.push(`experiencia en ${ind}`); }
+  if(reg && p.reg.includes(reg)){ s+=11; reasons.push(`presencia en ${reg}`); }
+  if(p.certs.length){ s+=Math.min(p.certs.length*3,9); }
   const opnB={L1:2,L2:5,L3:8}[p.opn]||0; s+=opnB;
+  const refHit = ind && p.cases.some(c=>c.ind===ind);
+  if(refHit){ s+=12; reasons.push(`caso de éxito en ${ind}`); }
   s=Math.min(Math.round(s),99);
   return {s,reasons,matched};
 }
@@ -219,6 +242,12 @@ function nextStep(seg){
   if(seg.includes("Build")) return "Siguiente paso: Oracle Day técnico + arquitectura del repo (one-click)";
   if(seg.includes("Sell")) return "Siguiente paso: co-sell estructurado + calificación BANT";
   return "Siguiente paso: sesión ejecutiva / introducción de ecosistema";
+}
+function casesHtml(p,ind){
+  if(!p.cases||!p.cases.length) return "";
+  const ord=p.cases.slice().sort((a,b)=> (b.ind===ind)-(a.ind===ind));
+  const items=ord.map(c=>`<div class="ci ${c.ind===ind?'rel':''}">${c.ind===ind?'★ ':''}<span><b>${c.cli}</b> — ${c.out}</span><span class="cind">${c.ind}</span></div>`).join("");
+  return `<div class="cases"><div class="ct">🏆 Casos de éxito / referencias</div>${items}</div>`;
 }
 
 $("search").addEventListener("click",()=>{
@@ -245,12 +274,13 @@ $("search").addEventListener("click",()=>{
         <div class="tags">${segs}${matched}</div>
         <div class="why"><b>Por qué encaja:</b> ${x.reasons.length?x.reasons.join(" · "):"coincidencia parcial por perfil general"}.</div>
         <div class="tags">${certs}</div>
+        ${casesHtml(p,ind)}
         <div class="next">→ ${nextStep(p.seg)}</div>
       </div>`;
     }).join("");
   }
   $("resultstep").style.display="block";
-  $("reshint").innerHTML=`El motor evaluó <b>${CORPUS.length} partners</b> y ordenó por fit. <b>El AE decide y aprueba</b> — la IA solo recomienda.`;
+  $("reshint").innerHTML=`El motor evaluó <b>${CORPUS.length} partners</b> y ordenó por fit (capacidades + certificaciones + <b>casos de éxito</b>). <b>El AE decide y aprueba</b> — la IA solo recomienda.`;
   lite("e3");
   window.scrollTo({top:$("resultstep").offsetTop-70,behavior:"smooth"});
 });
@@ -259,11 +289,15 @@ $("addp").addEventListener("click",()=>{
   const name=$("n-name").value.trim(); if(!name){$("addmsg").textContent="";$("n-name").focus();return;}
   const dom=[...$("n-dom").selectedOptions].map(o=>o.value);
   const ind=[...$("n-ind").selectedOptions].map(o=>o.value);
-  CORPUS.push({name,seg:[$("n-seg").value],opn:$("n-opn").value,dom:dom.length?dom:["Apps"],ind:ind.length?ind:["Banca"],reg:[$("n-reg").value],certs:["OCI Foundations"]});
+  const indList=ind.length?ind:["Banca"];
+  const cli=$("n-cli").value.trim(), out=$("n-out").value.trim();
+  const cases = (cli&&out)? [{cli,out,ind:indList[0]}] : [];
+  CORPUS.push({name,seg:[$("n-seg").value],opn:$("n-opn").value,dom:dom.length?dom:["Apps"],ind:indList,reg:[$("n-reg").value],certs:["OCI Foundations"],cases});
   lite("e1");
-  $("addmsg").textContent=`✓ ${name} agregado — corpus: ${CORPUS.length} partners. Vuelve a buscar.`;
+  const extra = cases.length? " (con 1 caso de éxito)" : "";
+  $("addmsg").textContent=`✓ ${name} agregado${extra} — corpus: ${CORPUS.length} partners. Vuelve a buscar.`;
   $("corpusbar").innerHTML=`✓ Corpus actualizado — <b>${CORPUS.length} partners</b>. El motor ya lo considera en la próxima búsqueda.`;
-  $("n-name").value="";
+  $("n-name").value="";$("n-cli").value="";$("n-out").value="";
 });
 </script>
 </body>
