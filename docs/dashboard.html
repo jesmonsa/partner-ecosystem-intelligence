@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KPIs Semanales — Gestión de Canal · Partner & Ecosystem Intelligence</title>
+<title>KPIs del MVP — Efectividad del partner · Partner & Ecosystem Intelligence</title>
 <style>
   :root{
     --bg:#05080f;--panel:#0e1626;--panel2:#121d31;--line:#1d2942;--txt:#e7edf6;--mut:#9fb0c7;--mut2:#6f819b;
-    --red:#C74634;--red2:#ff6f5e;--grn:#3ddc97;--blu:#5aa9ff;--amb:#f5b942;--vio:#9b8cff;--rad:14px;--maxw:1180px;
+    --red:#C74634;--red2:#ff6f5e;--grn:#3ddc97;--blu:#5aa9ff;--amb:#f5b942;--vio:#9b8cff;--rad:14px;--maxw:1100px;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   body{background:radial-gradient(1100px 500px at 85% -10%,#10203a 0,transparent 60%),var(--bg);
@@ -18,179 +18,162 @@
   nav{display:flex;align-items:center;gap:14px;height:60px}
   .brand{font-weight:700;display:flex;align-items:center;gap:9px}
   .brand .dot{width:10px;height:10px;border-radius:3px;background:var(--red)}
-  .back{font-size:13px;color:var(--mut);margin-left:auto}
-  .back:hover{color:var(--txt)}
+  .back{font-size:13px;color:var(--mut);margin-left:auto}.back:hover{color:var(--txt)}
   .lang{display:flex;gap:4px;border:1px solid var(--line);border-radius:999px;padding:3px}
   .lang button{background:transparent;border:0;color:var(--mut);font-size:12px;font-weight:600;padding:5px 10px;border-radius:999px;cursor:pointer}
   .lang button.on{background:var(--red);color:#fff}
   .sample{background:#1c160a;border:1px solid #3a2f12;color:#f0d9a8;border-radius:10px;padding:9px 14px;font-size:12.5px;margin:18px 0}
-  .top{display:flex;flex-wrap:wrap;align-items:flex-end;gap:14px;margin:26px 0 6px}
+  .top{display:flex;flex-wrap:wrap;align-items:flex-end;gap:14px;margin:24px 0 4px}
   h1{font-size:clamp(22px,3vw,30px);font-weight:800;letter-spacing:-.4px}
-  .wk{margin-left:auto;text-align:right;color:var(--mut);font-size:13px}
-  .wk b{color:var(--txt);font-size:15px}
-  .band{font-size:11px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;padding:7px 14px;border-radius:10px;margin:22px 0 10px;display:flex;align-items:center;gap:10px}
-  .band.c1{background:#0c1830;color:var(--blu);border:1px solid #1d3357}
-  .band.c2{background:#1c0f0d;color:var(--red2);border:1px solid #3a2420}
-  .band.c3{background:#160f2b;color:var(--vio);border:1px solid #2c2155}
-  .band.c4{background:#0c1f17;color:var(--grn);border:1px solid #1c3a2c}
-  .band.c5{background:#1c160a;color:var(--amb);border:1px solid #3a2f12}
-  .grid{display:grid;gap:12px}
-  .g4{grid-template-columns:repeat(4,1fr)} .g3{grid-template-columns:repeat(3,1fr)} .g6{grid-template-columns:repeat(6,1fr)}
-  @media(max-width:860px){.g4,.g6{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:1fr}}
-  .m{background:var(--panel);border:1px solid var(--line);border-radius:var(--rad);padding:16px}
-  .m .v{font-size:26px;font-weight:800}
-  .m .l{font-size:12px;color:var(--mut);margin-top:3px;line-height:1.3}
-  .m .d{font-size:12px;font-weight:700;margin-top:7px}
+  .subt{color:var(--mut);font-size:14px}
+  .wk{margin-left:auto;text-align:right;color:var(--mut);font-size:13px}.wk b{color:var(--txt);font-size:15px}
+  .adopt{display:flex;flex-wrap:wrap;align-items:center;gap:18px;background:var(--panel2);border:1px solid var(--line);border-radius:var(--rad);padding:16px 18px;margin:16px 0}
+  .adopt .big{font-size:34px;font-weight:800;color:var(--blu);line-height:1}
+  .adopt .lbl{font-size:12px;color:var(--mut2);text-transform:uppercase;letter-spacing:.5px}
+  .adopt .d{font-size:13px;font-weight:700;color:var(--grn)}
+  .caveat{flex:1;min-width:240px;font-size:12.5px;color:#f0d9a8;background:#1c160a;border:1px solid #3a2f12;border-radius:10px;padding:9px 13px}
+  .grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:6px}
+  @media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:560px){.grid{grid-template-columns:1fr}}
+  .kpi{background:var(--panel);border:1px solid var(--line);border-radius:var(--rad);padding:16px;display:flex;flex-direction:column;gap:4px}
+  .kpi .ic{font-size:20px}
+  .kpi .name{font-size:12.5px;font-weight:700;color:var(--txt);margin-top:2px}
+  .kpi .v{font-size:27px;font-weight:800;line-height:1.05;margin-top:4px}
+  .kpi .v small{font-size:13px;color:var(--mut2);font-weight:700}
+  .kpi .d{font-size:12px;font-weight:700}
+  .kpi .exp{font-size:11.5px;color:var(--mut);margin-top:6px;border-top:1px solid var(--line);padding-top:7px}
   .up{color:var(--grn)} .down{color:var(--red2)} .flat{color:var(--mut2)}
-  .row{display:grid;grid-template-columns:2fr 1fr;gap:12px;margin-top:12px}
-  @media(max-width:860px){.row{grid-template-columns:1fr}}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+  @media(max-width:760px){.row{grid-template-columns:1fr}}
   .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--rad);padding:18px}
-  .card h3{font-size:14px;color:var(--mut);font-weight:700;text-transform:uppercase;letter-spacing:.6px;margin-bottom:14px}
+  .card h3{font-size:13px;color:var(--mut);font-weight:700;text-transform:uppercase;letter-spacing:.6px;margin-bottom:12px}
   table{width:100%;border-collapse:collapse;font-size:13px}
-  th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line)}
+  th,td{text-align:left;padding:7px 6px;border-bottom:1px solid var(--line)}
   th{color:var(--mut2);font-size:11px;text-transform:uppercase;letter-spacing:.5px}
   .pill{font-size:11px;padding:2px 8px;border-radius:999px;border:1px solid var(--line);color:var(--mut)}
-  .gauge{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:100%}
-  .gnum{font-size:46px;font-weight:800;color:var(--grn)}
-  .footer{padding:30px 0;border-top:1px solid var(--line);color:var(--mut2);font-size:12.5px;margin-top:30px}
-  .ov{display:flex;flex-wrap:wrap;gap:18px;align-items:center;background:var(--panel2);border:1px solid var(--line);border-radius:var(--rad);padding:14px 18px;margin-top:6px}
-  .ov b{font-size:18px} .ov span{font-size:12px;color:var(--mut)}
-  .tag{font-size:11px;color:var(--mut);border:1px solid var(--line);border-radius:999px;padding:3px 9px}
+  .lossbar{height:7px;background:#1b2740;border-radius:999px;overflow:hidden;margin-top:4px}
+  .lossbar > i{display:block;height:100%;background:var(--red2)}
+  details{background:var(--panel);border:1px solid var(--line);border-radius:var(--rad);padding:6px 18px;margin-top:14px}
+  summary{cursor:pointer;font-size:13.5px;font-weight:700;color:var(--amb);padding:10px 0;list-style:none}
+  summary::-webkit-details-marker{display:none}
+  summary:before{content:"▸ ";color:var(--amb)}
+  details[open] summary:before{content:"▾ "}
+  .deep{font-size:12px;color:var(--mut2);margin:2px 0 12px}
+  .foot{padding:26px 0;border-top:1px solid var(--line);color:var(--mut2);font-size:12px;margin-top:26px}
 </style>
 </head>
 <body>
 <header><div class="wrap"><nav>
-  <div class="brand"><span class="dot"></span>Partner &amp; Ecosystem Intelligence</div>
+  <div class="brand"><span class="dot"></span>Partner & Ecosystem Intelligence</div>
   <a class="back" href="./index.html" data-i18n="back">← Volver a la plataforma</a>
   <div class="lang"><button data-lang="es" class="on">ES</button><button data-lang="en">EN</button><button data-lang="pt">PT</button></div>
 </nav></div></header>
 
 <div class="wrap">
-  <div class="sample" data-i18n="sample">⚠ Datos de ejemplo (sample) — prototipo. El dashboard se conecta a CRM / Seismic / repositorio del ecosistema cuando esté disponible. Ningún dato real de partners se publica aquí.</div>
+  <div class="sample" data-i18n="sample">⚠ Datos de ejemplo (sample) — prototipo. Se conecta a CRM cuando esté disponible. Ningún dato real de partners se publica aquí.</div>
 
   <div class="top">
     <div>
-      <h1 data-i18n="title">KPIs semanales — Gestión de canal</h1>
-      <div style="color:var(--mut);font-size:14px" data-i18n="subtitle">Modelo Ecosystem-Led Growth · enfoque: conectar con intención, ejecutar con disciplina, escalar el ecosistema</div>
+      <h1 data-i18n="title">KPIs del MVP — Efectividad del partner</h1>
+      <div class="subt" data-i18n="subtitle">Uso interno del equipo HT · 5 indicadores fáciles de explicar · ¿el partner está generando y acelerando negocio?</div>
     </div>
-    <div class="wk"><span data-i18n="weekLbl">Semana</span> <b>21</b><br><span data-i18n="updated">Actualizado: 17 jun 2026</span></div>
+    <div class="wk"><span data-i18n="weekLbl">Semana</span> <b>21</b><br><span data-i18n="updated">Actualizado: 18 jun 2026</span></div>
   </div>
 
-  <div class="ov">
-    <div><b>Partner Ejemplo (Tier 1)</b><br><span data-i18n="ovFocus">Focus: AI &amp; Data · Migración OCI · Modernización</span></div>
-    <div style="margin-left:auto" class="tag" data-i18n="ovTeam">POD: CSM · PAM · Presales Tech/Apps · Arq SaaS · PXM · Marketing</div>
+  <div class="adopt">
+    <div>
+      <div class="lbl" data-i18n="adoptLbl">Adopción del modelo (contexto)</div>
+      <div class="big">61%<span style="font-size:14px;color:var(--mut2)"> </span></div>
+      <div class="d" data-i18n="adoptD">▲ +6 pp vs sem. anterior · oportunidades con partner</div>
+    </div>
+    <div class="caveat" data-i18n="caveat">Ojo: si la adopción sube pero el win rate y el ciclo no mejoran, estamos canibalizando negocio directo, no generando influencia real.</div>
   </div>
 
-  <div class="band c1"><span>🔵</span><span data-i18n="b1">CONNECT — Generación de demanda</span></div>
-  <div class="grid g4" id="connect"></div>
+  <div class="grid" id="kpis"></div>
 
-  <div class="band c2"><span>🔴</span><span data-i18n="b2">EXECUTE — Velocidad y conversión</span></div>
-  <div class="grid g6" id="execute"></div>
-
-  <div class="band c3"><span>🟣</span><span data-i18n="b3">CO-SELL — Ejecución conjunta</span></div>
-  <div class="grid g3" id="cosell"></div>
-
-  <div class="band c4"><span>🟢</span><span data-i18n="b4">OCI / IA — Impacto en consumo</span></div>
-  <div class="grid g4" id="consumo"></div>
-
-  <div class="band c5"><span>🟡</span><span data-i18n="b5">SCALE — Impacto y crecimiento</span></div>
-  <div class="grid g3" id="scale"></div>
+  <details>
+    <summary data-i18n="lossT">Profundización — Loss review (por qué se perdió)</summary>
+    <div class="deep" data-i18n="lossSub">Capa analítica opcional. No es KPI del tablero principal; sirve para aprender de las oportunidades cerradas-perdidas con partner.</div>
+    <div id="loss"></div>
+  </details>
 
   <div class="row">
-    <div class="card"><h3 data-i18n="topOpp">Top 5 oportunidades activas</h3>
-      <table id="opptbl"><thead><tr>
-        <th data-i18n="thOpp">Oportunidad</th><th data-i18n="thStage">Stage</th><th data-i18n="thVal">Valor</th><th data-i18n="thClose">Cierre</th>
-      </tr></thead><tbody></tbody></table>
-    </div>
-    <div class="card"><h3 data-i18n="health">Health Score semanal</h3>
-      <div class="gauge"><div class="gnum">87<span style="font-size:20px;color:var(--mut2)">/100</span></div>
-        <div class="tag up" data-i18n="healthTrend">▲ +4 vs semana anterior</div>
-        <div style="font-size:12px;color:var(--mut);text-align:center;margin-top:8px" data-i18n="healthNote">SQLs · Stage progression · Velocity · Co-sell · CRM hygiene</div>
-      </div>
-    </div>
+    <div class="card"><h3 data-i18n="moveT">Movimiento del pipeline (semana)</h3><table id="move"></table></div>
+    <div class="card"><h3 data-i18n="oppT">Oportunidades activas con partner</h3><table id="opps"></table></div>
   </div>
 
-  <div class="footer wrap" style="padding-left:0;padding-right:0">
-    <div data-i18n="foot">Prototipo de dashboard · Partner &amp; Ecosystem Intelligence · adaptado del modelo de KPIs semanales de CAMCAR · datos de ejemplo</div>
-  </div>
+  <div class="foot" data-i18n="foot">KPIs del MVP · Partner & Ecosystem Intelligence · Challenge #4 · acotados según definición del equipo · datos de ejemplo</div>
 </div>
 
 <script>
 const L=["es","en","pt"];
-const CONNECT=[
-  {v:"24",d:"+14%",t:"up",l:["Nuevas conexiones","New connections","Novas conexões"]},
-  {v:"32",d:"+18%",t:"up",l:["Reuniones agendadas","Meetings booked","Reuniões agendadas"]},
-  {v:"11",d:"+10%",t:"up",l:["SQL generados","SQLs generated","SQLs gerados"]},
-  {v:"6",d:"+20%",t:"up",l:["Nuevas cuentas ICP","New ICP accounts","Novas contas ICP"]}
+const KPIS=[
+  {ic:"🌱",name:["Generación partner-sourced","Partner-sourced generation","Geração partner-sourced"],v:"9",vs:["opps nuevas","new opps","opps novas"],d:"+3",t:"up",
+   exp:["Oportunidades nuevas que trajo el partner — no Oracle ni el equipo técnico.","New opportunities the partner brought in — not Oracle or the tech team.","Oportunidades novas que o parceiro trouxe — não a Oracle nem o time técnico."]},
+  {ic:"📊",name:["Pipeline activo y movimiento","Active pipeline & movement","Pipeline ativo e movimento"],v:"27",vs:["open · →Won 6 · →Lost 3","open · →Won 6 · →Lost 3","open · →Won 6 · →Lost 3"],d:"+8%",t:"up",
+   exp:["Pipeline vivo con partner y hacia dónde se mueve (ganado vs perdido).","Live partner pipeline and where it moves (won vs lost).","Pipeline vivo com parceiro e para onde se move (ganho vs perdido)."]},
+  {ic:"🎯",name:["Win rate (conversión)","Win rate (conversion)","Win rate (conversão)"],v:"38",vs:["%","%","%"],d:"+5 pp",t:"up",
+   exp:["De cada 10 opps con partner, cuántas ganamos. ¿Con partner ganamos más?","Of every 10 partner opps, how many we win. Do we win more with partners?","De cada 10 opps com parceiro, quantas ganhamos. Ganhamos mais com parceiro?"]},
+  {ic:"⏱️",name:["Ciclo de venta (aging)","Sales cycle (aging)","Ciclo de venda (aging)"],v:"78",vs:["días","days","dias"],d:"-12",t:"up",
+   exp:["Tiempo de generación a cierre. Menos días = el partner progresa, no se estanca.","Time from generation to close. Fewer days = the partner progresses.","Tempo de geração até fechamento. Menos dias = o parceiro progride."]},
+  {ic:"⛽",name:["Anticipación de consumo","Consumption anticipation","Antecipação de consumo"],v:"$418K",vs:["rampa OCI","OCI ramp","rampa OCI"],d:"+15%",t:"up",
+   exp:["Rampa de consumo OCI que adelantan las opps con partner. Conecta con el vendedor.","OCI consumption ramp that partner opps bring forward. Ties to the seller.","Rampa de consumo OCI antecipada pelas opps com parceiro. Conecta com o vendedor."]}
 ];
-const EXECUTE=[
-  {v:"27",d:"+8%",t:"up",l:["Oportunidades activas","Active opportunities","Oportunidades ativas"]},
-  {v:"16%",d:"+4pp",t:"up",l:["Stage progression WoW","Stage progression WoW","Stage progression WoW"]},
-  {v:"78",d:"-6 días",t:"up",l:["Sales cycle (días)","Sales cycle (days)","Ciclo de vendas (dias)"]},
-  {v:"3",d:"-25%",t:"up",l:["Deals estancados","Stalled deals","Deals estagnados"]},
-  {v:"5",d:"+40%",t:"up",l:["Blockers removidos","Blockers removed","Blockers removidos"]},
-  {v:"21",d:"+10%",t:"up",l:["Deals en stage","Deals in stage","Deals em stage"]}
+const MOVE=[
+  {l:["→ Ganadas (Won)","→ Won","→ Ganhas (Won)"],v:"6",c:"up"},
+  {l:["→ En progreso (stage ↑)","→ Progressed (stage ↑)","→ Em progresso (stage ↑)"],v:"5",c:"up"},
+  {l:["→ Perdidas (Closed-Lost)","→ Closed-Lost","→ Perdidas (Closed-Lost)"],v:"3",c:"down"}
 ];
-const COSELL=[
-  {v:"12",d:"+20%",t:"up",l:["Co-sell meetings","Co-sell meetings","Co-sell meetings"]},
-  {v:"21",d:"+10%",t:"up",l:["Deals con partner attached","Partner-attached deals","Deals com partner attached"]},
-  {v:"6",d:"+20%",t:"up",l:["Exec sponsor meetings","Exec sponsor meetings","Exec sponsor meetings"]}
+const OPPS=[
+  {o:"Migración Core Banking",s:"Stage 4",v:"$620K"},
+  {o:"AI Data Platform Retail",s:"Stage 2",v:"$540K"},
+  {o:"Data Lake Gobierno",s:"Stage 2",v:"$480K"},
+  {o:"Open Finance Fintech",s:"Stage 3",v:"$300K"}
 ];
-const CONSUMO=[
-  {v:"4",d:"+25%",t:"up",l:["AI opportunities","AI opportunities","AI opportunities"]},
-  {v:"9",d:"+29%",t:"up",l:["OCI opportunities","OCI opportunities","OCI opportunities"]},
-  {v:"7",d:"+40%",t:"up",l:["Nuevos workloads","New workloads","Novos workloads"]},
-  {v:"$418K",d:"+15%",t:"up",l:["Consumo OCI","OCI consumption","Consumo OCI"]}
-];
-const SCALE=[
-  {v:"$1.2M",d:"+12%",t:"up",l:["Won contribution","Won contribution","Won contribution"]},
-  {v:"2",d:"+1",t:"up",l:["Casos de éxito","Success cases","Casos de sucesso"]},
-  {v:"3",d:"+1",t:"up",l:["Casos de uso","Use cases","Casos de uso"]}
-];
-const OPP=[
-  {o:"Banca Digital Financiera",s:"Stage 3",v:"$750K",c:"30-jun"},
-  {o:"Migración Core Banking",s:"Stage 4",v:"$620K",c:"15-ago"},
-  {o:"AI Data Platform Retail",s:"Stage 2",v:"$540K",c:"20-ago"},
-  {o:"Modernización Apps Seguros",s:"Stage 3",v:"$410K",c:"05-sep"},
-  {o:"Data Lake Gobierno",s:"Stage 2",v:"$480K",c:"05-sep"}
+const LOSS=[
+  {r:["Precio / costo","Price / cost","Preço / custo"],p:30},
+  {r:["Competencia (otra nube)","Competition (other cloud)","Concorrência (outra nuvem)"],p:25},
+  {r:["Timing / presupuesto","Timing / budget","Timing / orçamento"],p:20},
+  {r:["Partner no ejecutó","Partner didn't execute","Parceiro não executou"],p:15},
+  {r:["Otros","Other","Outros"],p:10}
 ];
 const T={
   back:["← Volver a la plataforma","← Back to the platform","← Voltar à plataforma"],
-  sample:["⚠ Datos de ejemplo (sample) — prototipo. El dashboard se conecta a CRM / Seismic / repositorio del ecosistema cuando esté disponible. Ningún dato real de partners se publica aquí.",
-    "⚠ Sample data — prototype. The dashboard connects to CRM / Seismic / ecosystem repository when available. No real partner data is published here.",
-    "⚠ Dados de exemplo (sample) — protótipo. O dashboard conecta a CRM / Seismic / repositório do ecossistema quando disponível. Nenhum dado real de parceiros é publicado aqui."],
-  title:["KPIs semanales — Gestión de canal","Weekly KPIs — Channel management","KPIs semanais — Gestão de canal"],
-  subtitle:["Modelo Ecosystem-Led Growth · enfoque: conectar con intención, ejecutar con disciplina, escalar el ecosistema",
-    "Ecosystem-Led Growth model · focus: connect with intent, execute with discipline, scale the ecosystem",
-    "Modelo Ecosystem-Led Growth · foco: conectar com intenção, executar com disciplina, escalar o ecossistema"],
+  sample:["⚠ Datos de ejemplo (sample) — prototipo. Se conecta a CRM cuando esté disponible. Ningún dato real de partners se publica aquí.",
+    "⚠ Sample data — prototype. Connects to CRM when available. No real partner data is published here.",
+    "⚠ Dados de exemplo (sample) — protótipo. Conecta ao CRM quando disponível. Nenhum dado real de parceiros é publicado aqui."],
+  title:["KPIs del MVP — Efectividad del partner","MVP KPIs — Partner effectiveness","KPIs do MVP — Efetividade do parceiro"],
+  subtitle:["Uso interno del equipo HT · 5 indicadores fáciles de explicar · ¿el partner está generando y acelerando negocio?",
+    "Internal use, HT team · 5 easy-to-explain indicators · is the partner generating and accelerating business?",
+    "Uso interno do time HT · 5 indicadores fáceis de explicar · o parceiro está gerando e acelerando negócio?"],
   weekLbl:["Semana","Week","Semana"],
-  updated:["Actualizado: 17 jun 2026","Updated: Jun 17, 2026","Atualizado: 17 jun 2026"],
-  ovFocus:["Focus: AI & Data · Migración OCI · Modernización","Focus: AI & Data · OCI Migration · Modernization","Focus: AI & Data · Migração OCI · Modernização"],
-  ovTeam:["POD: CSM · PAM · Presales Tech/Apps · Arq SaaS · PXM · Marketing","POD: CSM · PAM · Presales Tech/Apps · Arq SaaS · PXM · Marketing","POD: CSM · PAM · Presales Tech/Apps · Arq SaaS · PXM · Marketing"],
-  b1:["CONNECT — Generación de demanda","CONNECT — Demand generation","CONNECT — Geração de demanda"],
-  b2:["EXECUTE — Velocidad y conversión","EXECUTE — Velocity & conversion","EXECUTE — Velocidade e conversão"],
-  b3:["CO-SELL — Ejecución conjunta","CO-SELL — Joint execution","CO-SELL — Execução conjunta"],
-  b4:["OCI / IA — Impacto en consumo","OCI / AI — Consumption impact","OCI / IA — Impacto no consumo"],
-  b5:["SCALE — Impacto y crecimiento","SCALE — Impact & growth","SCALE — Impacto e crescimento"],
-  topOpp:["Top 5 oportunidades activas","Top 5 active opportunities","Top 5 oportunidades ativas"],
-  thOpp:["Oportunidad","Opportunity","Oportunidade"],thStage:["Stage","Stage","Stage"],thVal:["Valor","Value","Valor"],thClose:["Cierre","Close","Fechamento"],
-  health:["Health Score semanal","Weekly Health Score","Health Score semanal"],
-  healthTrend:["▲ +4 vs semana anterior","▲ +4 vs last week","▲ +4 vs semana anterior"],
-  healthNote:["SQLs · Stage progression · Velocity · Co-sell · CRM hygiene","SQLs · Stage progression · Velocity · Co-sell · CRM hygiene","SQLs · Stage progression · Velocity · Co-sell · CRM hygiene"],
-  foot:["Prototipo de dashboard · Partner & Ecosystem Intelligence · adaptado del modelo de KPIs semanales de CAMCAR · datos de ejemplo",
-    "Dashboard prototype · Partner & Ecosystem Intelligence · adapted from CAMCAR's weekly KPI model · sample data",
-    "Protótipo de dashboard · Partner & Ecosystem Intelligence · adaptado do modelo de KPIs semanais da CAMCAR · dados de exemplo"]
+  updated:["Actualizado: 18 jun 2026","Updated: Jun 18, 2026","Atualizado: 18 jun 2026"],
+  adoptLbl:["Adopción del modelo (contexto)","Model adoption (context)","Adoção do modelo (contexto)"],
+  adoptD:["▲ +6 pp vs sem. anterior · oportunidades con partner","▲ +6 pp vs last week · opportunities with partner","▲ +6 pp vs sem. anterior · oportunidades com parceiro"],
+  caveat:["Ojo: si la adopción sube pero el win rate y el ciclo no mejoran, estamos canibalizando negocio directo, no generando influencia real.",
+    "Watch out: if adoption rises but win rate and cycle don't improve, we're cannibalizing direct business, not creating real influence.",
+    "Atenção: se a adoção sobe mas o win rate e o ciclo não melhoram, estamos canibalizando negócio direto, não gerando influência real."],
+  lossT:["Profundización — Loss review (por qué se perdió)","Deep dive — Loss review (why we lost)","Aprofundamento — Loss review (por que perdemos)"],
+  lossSub:["Capa analítica opcional. No es KPI del tablero principal; sirve para aprender de las oportunidades cerradas-perdidas con partner.",
+    "Optional analytics layer. Not a core dashboard KPI; helps learn from closed-lost partner opportunities.",
+    "Camada analítica opcional. Não é KPI do painel principal; ajuda a aprender das oportunidades closed-lost com parceiro."],
+  moveT:["Movimiento del pipeline (semana)","Pipeline movement (week)","Movimento do pipeline (semana)"],
+  oppT:["Oportunidades activas con partner","Active partner opportunities","Oportunidades ativas com parceiro"],
+  foot:["KPIs del MVP · Partner & Ecosystem Intelligence · Challenge #4 · acotados según definición del equipo · datos de ejemplo",
+    "MVP KPIs · Partner & Ecosystem Intelligence · Challenge #4 · scoped per team definition · sample data",
+    "KPIs do MVP · Partner & Ecosystem Intelligence · Challenge #4 · delimitados conforme definição do time · dados de exemplo"]
 };
 let li=0;
-function mcard(m){return `<div class="m"><div class="v">${m.v}</div><div class="l">${m.l[li]}</div><div class="d ${m.t}">${m.d}</div></div>`;}
 function render(){
   document.querySelectorAll("[data-i18n]").forEach(el=>{const k=el.getAttribute("data-i18n");if(T[k])el.textContent=T[k][li];});
-  document.getElementById("connect").innerHTML=CONNECT.map(mcard).join("");
-  document.getElementById("execute").innerHTML=EXECUTE.map(mcard).join("");
-  document.getElementById("cosell").innerHTML=COSELL.map(mcard).join("");
-  document.getElementById("consumo").innerHTML=CONSUMO.map(mcard).join("");
-  document.getElementById("scale").innerHTML=SCALE.map(mcard).join("");
-  document.querySelector("#opptbl tbody").innerHTML=OPP.map(o=>`<tr><td>${o.o}</td><td><span class="pill">${o.s}</span></td><td>${o.v}</td><td>${o.c}</td></tr>`).join("");
+  document.getElementById("kpis").innerHTML=KPIS.map(k=>`
+    <div class="kpi"><div class="ic">${k.ic}</div><div class="name">${k.name[li]}</div>
+      <div class="v">${k.v} <small>${k.vs[li]}</small></div>
+      <div class="d ${k.t}">${k.d}</div>
+      <div class="exp">${k.exp[li]}</div></div>`).join("");
+  document.getElementById("move").innerHTML="<tbody>"+MOVE.map(m=>`<tr><td>${m.l[li]}</td><td style="text-align:right" class="${m.c}">${m.v}</td></tr>`).join("")+"</tbody>";
+  document.getElementById("opps").innerHTML="<tbody>"+OPPS.map(o=>`<tr><td>${o.o}</td><td><span class="pill">${o.s}</span></td><td style="text-align:right">${o.v}</td></tr>`).join("")+"</tbody>";
+  document.getElementById("loss").innerHTML=LOSS.map(x=>`<div style="margin-bottom:9px"><div style="display:flex;font-size:12.5px"><span>${x.r[li]}</span><span style="margin-left:auto;color:var(--mut)">${x.p}%</span></div><div class="lossbar"><i style="width:${x.p}%"></i></div></div>`).join("");
   document.documentElement.lang=L[li];
 }
 document.querySelectorAll(".lang button").forEach(b=>b.addEventListener("click",()=>{
